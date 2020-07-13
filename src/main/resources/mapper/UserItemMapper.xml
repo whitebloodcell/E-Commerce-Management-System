@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.UserItemMapper">
+  <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.UserItem">
+    <!--@mbg.generated-->
+    <!--@Table user_item-->
+    <id column="user_item_id" jdbcType="INTEGER" property="userItemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_item_nickname" jdbcType="VARCHAR" property="userItemNickname" />
+    <result column="user_item_phone" jdbcType="VARCHAR" property="userItemPhone" />
+    <result column="user_item_email" jdbcType="VARCHAR" property="userItemEmail" />
+    <result column="user_item_icon" jdbcType="VARCHAR" property="userItemIcon" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_item_id, user_id, user_item_nickname, user_item_phone, user_item_email, user_item_icon, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user_item
+    where user_item_id = #{userItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user_item
+    where user_item_id = #{userItemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="user_item_id" keyProperty="userItemId" parameterType="com.qf.ecms.domain.entity.UserItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_item (user_id, user_item_nickname, user_item_phone, 
+      user_item_email, user_item_icon, update_time
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userItemNickname,jdbcType=VARCHAR}, #{userItemPhone,jdbcType=VARCHAR}, 
+      #{userItemEmail,jdbcType=VARCHAR}, #{userItemIcon,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="user_item_id" keyProperty="userItemId" parameterType="com.qf.ecms.domain.entity.UserItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userItemNickname != null">
+        user_item_nickname,
+      </if>
+      <if test="userItemPhone != null">
+        user_item_phone,
+      </if>
+      <if test="userItemEmail != null">
+        user_item_email,
+      </if>
+      <if test="userItemIcon != null">
+        user_item_icon,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userItemNickname != null">
+        #{userItemNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemPhone != null">
+        #{userItemPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemEmail != null">
+        #{userItemEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemIcon != null">
+        #{userItemIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.UserItem">
+    <!--@mbg.generated-->
+    update user_item
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userItemNickname != null">
+        user_item_nickname = #{userItemNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemPhone != null">
+        user_item_phone = #{userItemPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemEmail != null">
+        user_item_email = #{userItemEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userItemIcon != null">
+        user_item_icon = #{userItemIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_item_id = #{userItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.UserItem">
+    <!--@mbg.generated-->
+    update user_item
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_item_nickname = #{userItemNickname,jdbcType=VARCHAR},
+      user_item_phone = #{userItemPhone,jdbcType=VARCHAR},
+      user_item_email = #{userItemEmail,jdbcType=VARCHAR},
+      user_item_icon = #{userItemIcon,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where user_item_id = #{userItemId,jdbcType=INTEGER}
+  </update>
+</mapper>
