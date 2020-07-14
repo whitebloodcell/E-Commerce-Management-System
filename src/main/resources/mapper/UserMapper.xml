@@ -93,4 +93,13 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <update id="updatePassword">
+    UPDATE user
+    SET user_password = #{password}
+    WHERE user_id = #{userId}
+    AND user_status = 1;
+  </update>
+
+
 </mapper>
