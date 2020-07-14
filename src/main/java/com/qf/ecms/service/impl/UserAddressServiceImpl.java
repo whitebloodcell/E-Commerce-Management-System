@@ -1,6 +1,7 @@
 package com.qf.ecms.service.impl;
 
 import com.qf.ecms.domain.entity.UserAddress;
+import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.mapper.UserAddressMapper;
 import com.qf.ecms.service.UserAddressService;
 import com.qf.ecms.utils.ErrorStatus;
@@ -23,7 +24,7 @@ public class UserAddressServiceImpl implements UserAddressService {
      */
     @Transactional
     @Override
-    public int addAddress(UserAddress userAddress) {
+    public int addAddress(UserAddress userAddress) throws ServiceException {
         ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
         //插入条数
         int row = 0;
@@ -31,8 +32,7 @@ public class UserAddressServiceImpl implements UserAddressService {
         int count = userAddressMapper.selectAddressCount(userAddress.getUserId());
         //保存记录等于10代表记录数已满,不满则插入数据
         if(count==10){
-            responseEntity.error(ErrorStatus.DATA_ERROR);
-            return 0;
+            throw new ServiceException("收货地址最多只能添加10条",20000);
         }else {
             row = userAddressMapper.insertAddress(userAddress);
         }
@@ -47,6 +47,26 @@ public class UserAddressServiceImpl implements UserAddressService {
     @Override
     public List<UserAddress> findAllAddress(int userId) {
         return userAddressMapper.selectAllAddressByUserId(userId);
+    }
+
+    /**
+     * 修改用户收货地址
+     * @param userAddress
+     * @return
+     */
+    @Override
+    public int updateUserAddress(UserAddress userAddress) {
+        return userAddressMapper.updateAddressByUserId(userAddress);
+    }
+
+    /**
+     * 根据购物车id删除购物车记录
+     * @param addressId
+     * @return
+     */
+    @Override
+    public int deleteAddress(int addressId) {
+        return userAddressMapper.updateAddressIsDel(addressId);
     }
 
 

@@ -25,7 +25,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.error(ErrorStatus.DAO_ERROR);
     }
 
-    public ResponseEntity handlerServuceException(ServiceException ex) {
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity handlerServiceException(ServiceException ex) {
         return ResponseEntity.error(ErrorStatus.SERVICE_ERROR);
     }
 }

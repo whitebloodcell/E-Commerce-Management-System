@@ -27,4 +27,17 @@ public interface UserAddressMapper {
      */
     List<UserAddress> selectAllAddressByUserId (@Param("userId") int userId);
 
+    /**
+     * 根据收货地址主键修改收货地址
+     * @param userAddress
+     * @return
+     */
+    int updateAddressByUserId(@Param("userAddress") UserAddress userAddress);
+
+    /**
+     * 根据收货地址主键修改收货地址假删除字段为1
+     * @param addressId
+     * @return
+     */
+    int updateAddressIsDel(@Param("addressId") int addressId);
 }

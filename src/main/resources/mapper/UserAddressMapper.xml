@@ -39,5 +39,40 @@
         AND is_del = 0;
     </select>
 
+    <update id="updateAddressByUserId">
+        UPDATE user_address
+        <set>
+            <if test="userAddress.name != null">
+                name=#{userAddress.name},
+            </if>
+            <if test="userAddress.province != null">
+                province=#{userAddress.province},
+            </if>
+            <if test="userAddress.city != null">
+                city=#{userAddress.city},
+            </if>
+            <if test="userAddress.district != null">
+                district=#{userAddress.district},
+            </if>
+            <if test="userAddress.street != null">
+                street=#{userAddress.street},
+            </if>
+            <if test="userAddress.addressDetail != null">
+                address_detail=#{userAddress.addressDetail},
+            </if>
+            <if test="userAddress.phone != null">
+                phone=#{userAddress.phone}
+            </if>
+        </set>
+        WHERE address_id = #{userAddress.addressId}
+        AND is_del = 0
+    </update>
+
+    <update id="updateAddressIsDel">
+        UPDATE user_address
+        SET is_del=1
+        WHERE address_id = #{addressId}
+    </update>
+
 
 </mapper>

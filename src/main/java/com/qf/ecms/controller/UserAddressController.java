@@ -43,6 +43,38 @@ public class UserAddressController {
                 responseEntity = responseEntity.error();
             }
         }catch (Exception e){
+            responseEntity = ResponseEntity.error();
+        }
+        return responseEntity;
+    }
+
+    @PostMapping ("/update")
+    public ResponseEntity<Integer> updateAddress(@RequestBody UserAddress userAddress){
+        ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
+        try{
+            int row = userAddressService.updateUserAddress(userAddress);
+            if(row>0){
+                responseEntity = responseEntity.success(row);
+            }else {
+                responseEntity = responseEntity.error();
+            }
+        }catch (Exception e){
+            responseEntity = responseEntity.error();
+        }
+        return responseEntity;
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<Integer> deleteAddress(int addressId){
+        ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
+        try{
+            int row = userAddressService.deleteAddress(addressId);
+            if(row>0){
+                responseEntity = responseEntity.success(row);
+            }else {
+                responseEntity = responseEntity.error();
+            }
+        }catch (Exception e){
             responseEntity = responseEntity.error();
         }
         return responseEntity;
