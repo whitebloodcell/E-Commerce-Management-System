@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.ecms.mapper.CommodityDetailMapper">
+
+
+        <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.CommodityDetail" >
+            <id column="cdid" property="cdid"/>
+
+            <result column="details_content" property="detailsContent"/>
+            <result column="model" property="model"/>
+            <result column="weight" property="weight"/>
+            <result column="create_time" property="createTime"/>
+            <result column="cid" property="cid"/>
+        </resultMap>
+    <insert id="insert" keyProperty="commodityDetail.cdid" useGeneratedKeys="true">
+        insert into
+            commodity_detail
+        (details_content, model, weight, cid)
+            values
+        (#{commodityDetail.detailsContent},#{commodityDetail.model},#{commodityDetail.weight},#{commodityDetail.cid})
+
+    </insert>
+
+
+</mapper>
