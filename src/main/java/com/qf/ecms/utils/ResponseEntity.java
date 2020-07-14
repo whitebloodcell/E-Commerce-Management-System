@@ -31,7 +31,7 @@ public class ResponseEntity<T> {
         return entity;
     }
 
-    public static <T> ResponseEntity error(ErrorStatus status) {
+    public static <T> ResponseEntity<T> error(ErrorStatus status) {
         ResponseEntity<T> entity = new ResponseEntity<>();
         entity.setMsg(status.getMsg());
         entity.setStatus(status.getStatus());
