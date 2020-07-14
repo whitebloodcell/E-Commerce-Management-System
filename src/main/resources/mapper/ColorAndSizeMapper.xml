@@ -13,6 +13,8 @@
             <result column="present_price" property="presentPrice"/>
             <result column="cid" property="cid"/>
         </resultMap>
+
+
     <insert id="insert" keyProperty="colorAndSize.csid" useGeneratedKeys="true">
         insert into
             color_size
