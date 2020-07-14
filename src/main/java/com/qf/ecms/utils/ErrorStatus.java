@@ -5,7 +5,9 @@ public enum ErrorStatus {
     POST_SUCCESS(20001, "success", "提交数据成功"),
     SERVICE_ERROR(40001, "service  error", "数据异常, 请重新在试"),
     DAO_ERROR(40001, "service  error", "数据层异常"),
-    SYS_ERROR(40004, "sys  error", "系统繁忙, 请重新在试");
+    SYS_ERROR(40004, "sys  error", "系统繁忙, 请重新在试"),
+    REGISTER_ERROR(40003, "register  error","用户名存在");
+
     int status;
     String msg;
     String tip;

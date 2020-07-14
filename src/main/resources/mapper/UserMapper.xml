@@ -13,5 +13,9 @@
         from user
         where user_account=#{userAccount}
   </select>
+    <insert id="insertUser">
+        insert into user(user_account, user_password)
+        values (#{user.userAccount},#{user.userPassword})
+    </insert>
 
 </mapper>

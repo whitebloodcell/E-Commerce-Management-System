@@ -51,4 +51,16 @@ public class LogInToRegisterServiceImpl implements LogInToRegisterService {
             throw new ServiceException(ErrorStatus.SERVICE_ERROR);
         }
     }
+
+    @Override
+    public int Register(User user) throws ServiceException {
+        int count=0;
+        //判断用户名是否存在
+        User judge = userMapper.selectByUserAccount(user.getUserAccount());
+        if(judge!=null){
+           throw new ServiceException(ErrorStatus.REGISTER_ERROR);
+        }
+        count  = userMapper.insertUser(user);
+        return count;
+    }
 }

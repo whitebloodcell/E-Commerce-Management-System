@@ -7,4 +7,5 @@ public interface UserMapper {
 
     User selectByUserAccount(@Param("userAccount") String userAccount);
 
+    int insertUser(@Param("user") User user);
 }

@@ -8,4 +8,6 @@ public interface LogInToRegisterService {
     //登陆
     UserDto Login(String userAccount , String password) throws ServiceException;
 
+    int Register(User user)throws ServiceException;
+
 }
