@@ -7,6 +7,8 @@ import com.qf.ecms.utils.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.xml.ws.Service;
+
 /**
  * 两个注解
  * 在类上面使用 @RestControllerAdvice
@@ -25,7 +27,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.error(ErrorStatus.DAO_ERROR);
     }
 
-    public ResponseEntity handlerServuceException(ServiceException ex) {
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity handlerServiceException(ServiceException ex) {
         return ResponseEntity.error(ErrorStatus.SERVICE_ERROR);
     }
 }

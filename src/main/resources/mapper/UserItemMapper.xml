@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.UserItemMapper">
+  <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.UserItem">
+    <id column="user_item_id" jdbcType="INTEGER" property="userItemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_item_nickname" jdbcType="VARCHAR" property="userItemNickname" />
+    <result column="user_item_phone" jdbcType="VARCHAR" property="userItemPhone" />
+    <result column="user_item_email" jdbcType="VARCHAR" property="userItemEmail" />
+    <result column="user_item_icon" jdbcType="VARCHAR" property="userItemIcon" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+
+    select user_item_id, user_item_nickname, user_item_phone, user_item_email, user_item_icon
+    from user_item
+    where user_id = #{userId}
+  </select>
+
+
+</mapper>

@@ -8,18 +8,22 @@
 
     <!--
     -->
+
+
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--  1初始化核心配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!--  2. 注册所有的mapper.xml文件-->
-        <property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
-        <property name="typeAliasesPackage" value="com.smart.shop.domain.entity"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="typeAliasesPackage" value="com.smart.shop.domain.*"/>
+
         <!--      3 . 注册 连接池对象-->
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <!--    注册所有的Mapper接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.smart.shop.mapper"/>
+        <property name="basePackage" value="com.qf.ecms.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
