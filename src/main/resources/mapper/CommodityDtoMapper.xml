@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.CommodityDtoMapper">
+
+    <resultMap id="AllBaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">
+        <collection property="colorAndSize.stock" column="stock"/>
+        <collection property="colorAndSize.originalPrice" column="original_price"/>
+        <collection property="colorAndSize.presentPrice" column="present_price"/>
+
+        <collection property="commodity.cid" column="cid"/>
+        <collection property="commodity.commodityTitle" column="commodity_tittle"/>
+        <collection property="commodity.enable" column="enable"/>
+
+
+        <collection property="commodityDetail.createTime" column="create_time"/>
+    </resultMap>
+    <select id="selectAll" resultType="com.qf.ecms.domain.dto.CommodityDto" resultMap="AllBaseResultMap">
+        select c.cid,c.commodity_tittle,c.enable,s.stock,s.original_price,s.present_price,d.create_time
+        from (commodity c left join color_size s on c.cid = s.cid) left join commodity_detail d on d.cid = c.cid
+        <trim prefix="where" prefixOverrides="and">
+            <if test="cidOrTitle != null ">
+                and (c.cid like concat('%',#{cidOrTitle},'%') or c.commodity_tittle like concat('%',#{cidOrTitle},'%'))
+            </if>
+
+            <if test="time != null ">
+                and d.create_time like concat('%',#{time},'%')
+            </if>
+        </trim>
+        limit #{limit},#{offset}
+    </select>
+
+
+</mapper>

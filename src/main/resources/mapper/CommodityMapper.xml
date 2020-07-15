@@ -13,8 +13,27 @@
         <result column="enable" property="enable"/>
     </resultMap>
 
+<!--    <resultMap id="commodityAndColorBaseResultMap" type="com.qf.ecms.domain.entity.ColorAndSize" extends="BaseResultMap">-->
+<!--        <association property="stock" resultMap="com.qf.ecms.mapper.ColorAndSizeMapper.BaseResultMap"/>-->
+<!--        <association property="originalPrice" resultMap="com.qf.ecms.mapper.ColorAndSizeMapper.BaseResultMap"/>-->
+<!--        <association property="presentPrice" resultMap="com.qf.ecms.mapper.ColorAndSizeMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="AllBaseResultMap" type="com.qf.ecms.domain.entity.CommodityDetail" extends="commodityAndColorBaseResultMap">-->
+<!--        <association property="createTime" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+    <resultMap id="AllBaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">
+        <collection property="colorAndSize.stock" column="stock"/>
+        <collection property="colorAndSize.originalPrice" column="original_price"/>
+        <collection property="colorAndSize.presentPrice" column="present_price"/>
+
+        <collection property="commodity.cid" column="cid"/>
+        <collection property="commodity.commodityTitle" column="commodity_tittle"/>
+        <collection property="commodity.enable" column="enable"/>
 
 
+        <collection property="commodityDetail.createTime" column="create_time"/>
+    </resultMap>
 
 
 
@@ -24,12 +43,50 @@
     <insert id="insert" keyProperty="commodity.cid" useGeneratedKeys="true">
         insert into
             commodity
-        (commodity_tittle, ssid, psid, is_new, enable)
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commodity.commodityTitle != null ">
+                commodity_tittle,
+            </if>
+            <if test="commodity.ssid != null">
+                ssid,
+            </if>
+            <if test="commodity.psid != null">
+                psid,
+            </if>
+            <if test="commodity.isNew != null">
+                is_new,
+            </if>
+            <if test="commodity.enable != null">
+                enable,
+            </if>
+            <if test="commodity.commodityPicture != null">
+                commodity_picture
+            </if>
+        </trim>
             values
-        (#{commodity.commodityTitle},#{commodity.ssid},#{commodity.psid},#{commodity.isNew},#{commodity.enable})
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commodity.commodityTitle != null">
+                #{commodity.commodityTitle},
+            </if>
+            <if test="commodity.ssid!= null">
+                #{commodity.ssid},
+            </if>
+            <if test="commodity.psid != null">
+                #{commodity.psid},
+            </if>
+            <if test="commodity.isNew != null">
+                #{commodity.isNew},
+            </if>
+            <if test="commodity.enable != null">
+                #{commodity.enable},
+            </if>
+            <if test="commodity.commodityPicture != null">
+                #{commodity.commodityPicture}
+            </if>
+        </trim>
 
     </insert>
 
 
-    
+
 </mapper>
