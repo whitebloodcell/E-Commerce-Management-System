@@ -1,12 +1,11 @@
 package com.qf.ecms.controller;
 
 import com.qf.ecms.domain.entity.User;
+import com.qf.ecms.domain.entity.backstage.dto.UserDto;
 import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.service.UserDtoService;
 import com.qf.ecms.utils.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,5 +22,19 @@ public class UserController {
         List<User> users = userDtoService.list(page, size);
         return ResponseEntity.success(users);
     }
+
+    @GetMapping("/select")
+    public ResponseEntity<List<User>> selectByNameOrTime(String userItemNickname, String createTime,int page,int size) throws ServiceException{
+        List<User> users = userDtoService.selectByNameOrTime(userItemNickname,createTime,page,size);
+        return ResponseEntity.success(users);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Integer> add(@RequestBody UserDto userDto) throws ServiceException{
+        int count = userDtoService.insert(userDto);
+        return ResponseEntity.success(count);
+    }
+
+
 }
 

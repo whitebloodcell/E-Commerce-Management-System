@@ -1,6 +1,7 @@
 package com.qf.ecms.service;
 
 import com.qf.ecms.domain.entity.User;
+import com.qf.ecms.domain.entity.backstage.dto.UserDto;
 
 import java.util.List;
 
@@ -21,10 +22,10 @@ public interface UserDtoService {
     int active(int userId);
 
     //添加用户
-    int insert(User user);
+    int insert(UserDto userDto);
 
     //修改用户信息
-    int updateByPrimaryKey(User user);
+    int updateByPrimaryKey(UserDto userDto);
 
 
 }

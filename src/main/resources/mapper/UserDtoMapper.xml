@@ -64,31 +64,30 @@
         AND user_status = 0
     </update>
 
-    <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.qf.ecms.domain.entity.User" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into `user` (user_account, user_password, user_status,
+    <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="UserDto" useGeneratedKeys="true">
+        INSERT INTO `user`(user_account, user_password, user_status,
         create_time)
-        values (#{user.userAccount,jdbcType=VARCHAR}, #{user.userPassword,jdbcType=VARCHAR}, #{user.userStatus,jdbcType=INTEGER},
-        #{user.createTime,jdbcType=TIMESTAMP})
+        VALUES (#{userDto.userAccount,jdbcType=VARCHAR}, #{userDto.userPassword,jdbcType=VARCHAR}, #{userDto.userStatus,jdbcType=INTEGER},
+        #{userDto.createTime,jdbcType=TIMESTAMP})
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.User">
+    <update id="updateByPrimaryKeySelective" parameterType="UserDto">
         <!--@mbg.generated-->
         update `user`
         <set>
-            <if test="user.userAccount != null">
-                user_account = #{user.userAccount,jdbcType=VARCHAR},
+            <if test="userDto.userAccount != null">
+                user_account = #{userDto.userAccount,jdbcType=VARCHAR},
             </if>
-            <if test="user.userPassword != null">
-                user_password = #{user.userPassword,jdbcType=VARCHAR},
+            <if test="userDto.userPassword != null">
+                user_password = #{userDto.userPassword,jdbcType=VARCHAR},
             </if>
-            <if test="user.userStatus != null">
-                user_status = #{user.userStatus,jdbcType=INTEGER},
+            <if test="userDto.userStatus != null">
+                user_status = #{userDto.userStatus,jdbcType=INTEGER},
             </if>
-            <if test="user.createTime != null">
-                create_time = #{user.createTime,jdbcType=TIMESTAMP},
+            <if test="userDto.createTime != null">
+                create_time = #{userDto.createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where user_id = #{user.userId,jdbcType=INTEGER}
+        where user_id = #{userDto.userId,jdbcType=INTEGER}
     </update>
 </mapper>

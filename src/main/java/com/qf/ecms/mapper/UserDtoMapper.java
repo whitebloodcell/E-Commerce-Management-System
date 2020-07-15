@@ -1,6 +1,7 @@
 package com.qf.ecms.mapper;
 
 import com.qf.ecms.domain.entity.User;
+import com.qf.ecms.domain.entity.backstage.dto.UserDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public interface UserDtoMapper {
     int active(@Param("userId") int userId);
 
     //添加用户
-    int insert(@Param("user") User user);
+    int insert(@Param("userDto") UserDto userDto);
 
     //修改用户信息
-    int updateByPrimaryKeySelective(@Param("user") User user);
+    int updateByPrimaryKeySelective(@Param("userDto") UserDto userDto);
 
 }
