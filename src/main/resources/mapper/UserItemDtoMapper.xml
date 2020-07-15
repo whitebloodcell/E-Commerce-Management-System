@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.UserItemDtoMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.backstage.dto.UserItemDto">
+        <id column="user_item_id" jdbcType="INTEGER" property="userItemId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_item_nickname" jdbcType="VARCHAR" property="userItemNickname"/>
+        <result column="user_item_phone" jdbcType="VARCHAR" property="userItemPhone"/>
+        <result column="user_item_email" jdbcType="VARCHAR" property="userItemEmail"/>
+        <result column="user_item_icon" jdbcType="VARCHAR" property="userItemIcon"/>
+        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+    </resultMap>
+    <insert id="insert">
+        INSERT INTO user_item(user_id,user_item_nickname,user_item_phone,user_item_email,user_item_icon)
+        VALUES (#{userItemDto.userId},#{userItemDto.userItemNickname},#{userItemDto.userItemPhone},#{userItemDto.userItemEmail},#{userItemDto.userItemIcon})
+    </insert>
+</mapper>
