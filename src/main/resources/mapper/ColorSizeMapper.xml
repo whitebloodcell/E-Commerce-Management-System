@@ -117,4 +117,11 @@
       cid = #{cid,jdbcType=INTEGER}
     where csid = #{csid,jdbcType=INTEGER}
   </update>
+
+    <select id="SelectStockByCsid" resultType="Integer">
+        SELECT cs.stock
+        FROM color_size cs LEFT JOIN commodity c ON cs.cid = c.cid
+        WHERE csid = #{csid}
+        AND c.enable = 0
+    </select>
 </mapper>

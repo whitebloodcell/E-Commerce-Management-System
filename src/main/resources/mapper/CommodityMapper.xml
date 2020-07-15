@@ -5,7 +5,7 @@
     <!--@mbg.generated-->
     <!--@Table commodity-->
     <id column="cid" jdbcType="INTEGER" property="cid" />
-    <result column="commodity_tittle" jdbcType="VARCHAR" property="commodityTittle" />
+    <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
     <result column="comment_picture" jdbcType="VARCHAR" property="commentPicture" />
     <result column="ssid" jdbcType="INTEGER" property="ssid" />
     <result column="psid" jdbcType="INTEGER" property="psid" />
@@ -14,7 +14,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    cid, commodity_tittle, comment_picture, ssid, `psid`, is_new, `enable`
+    cid, commodity_title, comment_picture, ssid, `psid`, is_new, `enable`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -30,19 +30,19 @@
   </delete>
   <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into commodity (commodity_tittle, comment_picture, 
-      ssid, `psid`, is_new, 
-      `enable`)
-    values (#{commodityTittle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, 
-      #{ssid,jdbcType=INTEGER}, #{psid,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, 
-      #{enable,jdbcType=INTEGER})
+    insert into commodity (commodity_title, comment_picture, ssid, 
+      `psid`, is_new, `enable`
+      )
+    values (#{commodityTitle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{ssid,jdbcType=INTEGER}, 
+      #{psid,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into commodity
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="commodityTittle != null">
-        commodity_tittle,
+      <if test="commodityTitle != null">
+        commodity_title,
       </if>
       <if test="commentPicture != null">
         comment_picture,
@@ -61,8 +61,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="commodityTittle != null">
-        #{commodityTittle,jdbcType=VARCHAR},
+      <if test="commodityTitle != null">
+        #{commodityTitle,jdbcType=VARCHAR},
       </if>
       <if test="commentPicture != null">
         #{commentPicture,jdbcType=VARCHAR},
@@ -85,8 +85,8 @@
     <!--@mbg.generated-->
     update commodity
     <set>
-      <if test="commodityTittle != null">
-        commodity_tittle = #{commodityTittle,jdbcType=VARCHAR},
+      <if test="commodityTitle != null">
+        commodity_title = #{commodityTitle,jdbcType=VARCHAR},
       </if>
       <if test="commentPicture != null">
         comment_picture = #{commentPicture,jdbcType=VARCHAR},
@@ -109,7 +109,7 @@
   <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.Commodity">
     <!--@mbg.generated-->
     update commodity
-    set commodity_tittle = #{commodityTittle,jdbcType=VARCHAR},
+    set commodity_title = #{commodityTitle,jdbcType=VARCHAR},
       comment_picture = #{commentPicture,jdbcType=VARCHAR},
       ssid = #{ssid,jdbcType=INTEGER},
       `psid` = #{psid,jdbcType=INTEGER},
