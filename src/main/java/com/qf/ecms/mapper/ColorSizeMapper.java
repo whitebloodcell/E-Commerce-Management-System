@@ -22,4 +22,5 @@ public interface ColorSizeMapper {
      * @return
      */
     int SelectStockByCsid(@Param("csid") int csid);
+
 }
