@@ -1,11 +1,10 @@
 package com.qf.ecms.controller;
 
 import com.qf.ecms.domain.dto.UserDetailDto;
+import com.qf.ecms.domain.entity.UserItem;
 import com.qf.ecms.service.UserService;
 import com.qf.ecms.utils.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -48,6 +47,22 @@ public class UserController {
         ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
         try{
             int row = userService.updatePassword(userId,password);
+            if(row>0){
+                responseEntity = responseEntity.success(row);
+            }else {
+                responseEntity = responseEntity.error();
+            }
+        }catch (Exception e){
+            responseEntity = ResponseEntity.error();
+        }
+        return responseEntity;
+    }
+
+    @PostMapping("/updateItem")
+    public ResponseEntity<Integer> updateUserItem(@RequestBody UserItem userItem){
+        ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
+        try{
+            int row = userService.updateUserItem(userItem);
             if(row>0){
                 responseEntity = responseEntity.success(row);
             }else {

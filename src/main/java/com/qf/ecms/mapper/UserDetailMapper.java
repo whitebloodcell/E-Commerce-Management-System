@@ -1,8 +1,12 @@
 package com.qf.ecms.mapper;
 
 import com.qf.ecms.domain.dto.UserDetailDto;
+import com.qf.ecms.exception.DaoException;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * 用户详细信息mapper
+ */
 public interface UserDetailMapper {
 
     /**
@@ -11,5 +15,7 @@ public interface UserDetailMapper {
      * @param userId
      * @return
      */
-    UserDetailDto selectUserDetail(@Param("userId") int userId);
+    UserDetailDto selectUserDetail(@Param("userId") int userId) throws DaoException;
+
+
 }

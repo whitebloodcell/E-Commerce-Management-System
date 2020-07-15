@@ -1,6 +1,7 @@
 package com.qf.ecms.service;
 
 import com.qf.ecms.domain.dto.UserDetailDto;
+import com.qf.ecms.domain.entity.UserItem;
 
 public interface UserService {
     /**
@@ -17,4 +18,11 @@ public interface UserService {
      * @return
      */
     int updatePassword (int userId,String password);
+
+    /**
+     * 修改用户详细信息
+     * @param userItem
+     * @return
+     */
+    int updateUserItem(UserItem userItem);
 }
