@@ -7,6 +7,7 @@ import lombok.Data;
 public class UserDto {
     private Integer userId;
     private String  userAccount;
+    private String userPhone;
     private UserItem userItem;
 
 }

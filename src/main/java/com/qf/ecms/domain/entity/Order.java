@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class TbOrder {
+public class Order {
     /**
     * 主键
     */
@@ -21,7 +21,7 @@ public class TbOrder {
     private Date createDate;
 
     /**
-    * 订单状态
+    * 订单状态,0代付款,1代发货,2待收货,3已收货,4退款
     */
     private Integer status;
 

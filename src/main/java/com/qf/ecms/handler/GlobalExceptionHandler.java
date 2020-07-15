@@ -23,8 +23,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DaoException.class)
-    public ResponseEntity handlerDaoException(DaoException ex) {
-        return ResponseEntity.error(ErrorStatus.DAO_ERROR);
+    public String handlerDaoException(DaoException ex) {
+        return ex.getMsg();
     }
 
     @ExceptionHandler(ServiceException.class)
