@@ -8,17 +8,18 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
-    <result column="commodity_tittle" jdbcType="VARCHAR" property="commodityTittle" />
+    <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
     <result column="comment_picture" jdbcType="VARCHAR" property="commentPicture" />
     <result column="color_name" jdbcType="VARCHAR" property="colorName" />
     <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="csid" jdbcType="INTEGER" property="csid" />
     <result column="present_price" jdbcType="DECIMAL" property="presentPrice" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    cart_id, user_id, `count`, cid, commodity_tittle, comment_picture, color_name, size_name, 
-    present_price, `status`
+    cart_id, user_id, `count`, cid, commodity_title, comment_picture, color_name, size_name, 
+    csid, present_price, `status`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -35,13 +36,13 @@
   <insert id="insert" keyColumn="cart_id" keyProperty="cartId" parameterType="com.qf.ecms.domain.entity.ShopCart" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into shop_cart (user_id, `count`, cid, 
-      commodity_tittle, comment_picture, color_name, 
-      size_name, present_price, `status`
-      )
+      commodity_title, comment_picture, color_name, 
+      size_name, csid, present_price, 
+      `status`)
     values (#{userId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
-      #{commodityTittle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR}, 
-      #{sizeName,jdbcType=VARCHAR}, #{presentPrice,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}
-      )
+      #{commodityTitle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR}, 
+      #{sizeName,jdbcType=VARCHAR}, #{csid,jdbcType=INTEGER}, #{presentPrice,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="cart_id" keyProperty="cartId" parameterType="com.qf.ecms.domain.entity.ShopCart" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -56,8 +57,8 @@
       <if test="cid != null">
         cid,
       </if>
-      <if test="commodityTittle != null">
-        commodity_tittle,
+      <if test="commodityTitle != null">
+        commodity_title,
       </if>
       <if test="commentPicture != null">
         comment_picture,
@@ -67,6 +68,9 @@
       </if>
       <if test="sizeName != null">
         size_name,
+      </if>
+      <if test="csid != null">
+        csid,
       </if>
       <if test="presentPrice != null">
         present_price,
@@ -85,8 +89,8 @@
       <if test="cid != null">
         #{cid,jdbcType=INTEGER},
       </if>
-      <if test="commodityTittle != null">
-        #{commodityTittle,jdbcType=VARCHAR},
+      <if test="commodityTitle != null">
+        #{commodityTitle,jdbcType=VARCHAR},
       </if>
       <if test="commentPicture != null">
         #{commentPicture,jdbcType=VARCHAR},
@@ -96,6 +100,9 @@
       </if>
       <if test="sizeName != null">
         #{sizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="csid != null">
+        #{csid,jdbcType=INTEGER},
       </if>
       <if test="presentPrice != null">
         #{presentPrice,jdbcType=DECIMAL},
@@ -118,8 +125,8 @@
       <if test="cid != null">
         cid = #{cid,jdbcType=INTEGER},
       </if>
-      <if test="commodityTittle != null">
-        commodity_tittle = #{commodityTittle,jdbcType=VARCHAR},
+      <if test="commodityTitle != null">
+        commodity_title = #{commodityTitle,jdbcType=VARCHAR},
       </if>
       <if test="commentPicture != null">
         comment_picture = #{commentPicture,jdbcType=VARCHAR},
@@ -129,6 +136,9 @@
       </if>
       <if test="sizeName != null">
         size_name = #{sizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="csid != null">
+        csid = #{csid,jdbcType=INTEGER},
       </if>
       <if test="presentPrice != null">
         present_price = #{presentPrice,jdbcType=DECIMAL},
@@ -145,12 +155,36 @@
     set user_id = #{userId,jdbcType=INTEGER},
       `count` = #{count,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
-      commodity_tittle = #{commodityTittle,jdbcType=VARCHAR},
+      commodity_title = #{commodityTitle,jdbcType=VARCHAR},
       comment_picture = #{commentPicture,jdbcType=VARCHAR},
       color_name = #{colorName,jdbcType=VARCHAR},
       size_name = #{sizeName,jdbcType=VARCHAR},
+      csid = #{csid,jdbcType=INTEGER},
       present_price = #{presentPrice,jdbcType=DECIMAL},
       `status` = #{status,jdbcType=INTEGER}
     where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+
+    <insert id="insertShopCart">
+        INSERT INTO shop_cart
+        (user_id, count, cid, commodity_title, comment_picture, color_name, size_name, present_price)
+        VALUES (#{shopCart.userId},#{shopCart.count},#{shopCart.cid},#{shopCart.commodityTitle},#{shopCart.commentPicture},#{shopCart.colorName},
+        #{shopCart.sizeName},#{shopCart.presentPrice}
+        )
+    </insert>
+
+  <select id="selectShopCartByCsIdAndUserId" resultMap="BaseResultMap">
+    SELECT cart_id,count
+    FROM shop_cart
+    WHERE user_id=#{userId}
+    AND csid=#{csid}
+    AND status = 1
+  </select>
+
+  <update id="updateShopCartCount">
+    UPDATE shop_cart
+    SET count = #{count}
+    WHERE cart_id = #{cartId}
+    AND status = 1
   </update>
 </mapper>
