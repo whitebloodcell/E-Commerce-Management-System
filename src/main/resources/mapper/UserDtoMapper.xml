@@ -66,10 +66,8 @@
 
     <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="UserDto" useGeneratedKeys="true">
         INSERT INTO
-        `user` (user_account, user_password, user_status,
-        create_time)
-        VALUES (#{userDto.userAccount,jdbcType=VARCHAR}, #{userDto.userPassword,jdbcType=VARCHAR}, #{userDto.userStatus,jdbcType=INTEGER},
-        #{userDto.createTime,jdbcType=TIMESTAMP})
+        `user` (user_account, user_password, user_status)
+        VALUES (#{userDto.userAccount,jdbcType=VARCHAR}, #{userDto.userPassword,jdbcType=VARCHAR}, #{userDto.userStatus,jdbcType=INTEGER})
     </insert>
 
     <update id="updateByPrimaryKeySelective" parameterType="UserDto">

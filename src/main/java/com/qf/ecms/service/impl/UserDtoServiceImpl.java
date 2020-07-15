@@ -19,6 +19,8 @@ import java.util.List;
 public class UserDtoServiceImpl implements UserDtoService {
     @Resource
     UserDtoMapper userDtoMapper;
+
+    @Resource
     UserItemDtoMapper userItemDtoMapper;
 
     @Override
