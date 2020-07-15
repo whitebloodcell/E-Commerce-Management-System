@@ -41,4 +41,5 @@ public interface ShopCartMapper {
      */
     int updateShopCartCount(@Param("cartId") int cartId, @Param("count") int count);
 
+
 }

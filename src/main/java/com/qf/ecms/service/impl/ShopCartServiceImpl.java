@@ -33,6 +33,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     @Override
     @Transactional
     public int addShopCar(ShopCart shopCart) throws ServiceException {
+        //查看当前商品的库存
         int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
         int row = 0;
         if(stock>=shopCart.getCount()){
@@ -50,6 +51,29 @@ public class ShopCartServiceImpl implements ShopCartService {
             }
         }else {
             throw new ServiceException("当前购买数量大于库存",20000);
+        }
+        return row;
+    }
+
+    /**
+     * 1.查看当前商品库存
+     * 2.修改数量大于商品库存则返回出错信息
+     * 3.否则修改购物车商品数量
+     * @param shopCart 购物车对象
+     * @return
+     */
+    @Override
+    public int updateShopCartCount(ShopCart shopCart) throws ServiceException {
+        //查看当前商品的库存
+        int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
+        //购物车商品要修改的数量
+        int count = shopCart.getCount();
+        //修改成功数
+        int row = 0;
+        if (count<=stock){
+            row = shopCartMapper.updateShopCartCount(shopCart.getCartId(), count);
+        }else {
+            throw new ServiceException("最多只能买"+stock+"件",20000);
         }
         return row;
     }
