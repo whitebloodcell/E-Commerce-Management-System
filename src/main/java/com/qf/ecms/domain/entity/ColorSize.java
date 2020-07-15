@@ -10,7 +10,7 @@ public class ColorSize {
     /**
     * 颜色尺寸表主键
     */
-    private Integer csid;
+    private Integer csId;
 
     /**
     * 颜色名

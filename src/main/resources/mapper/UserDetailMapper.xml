@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.UserDetailMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.UserDetailDto">
+        <result property="userAccount" jdbcType="VARCHAR" column="user_account"/>
+        <result property="createTime" jdbcType="DATE" column="create_time"/>
+        <result property="userItemId" jdbcType="INTEGER" column="user_item_id"/>
+        <result property="userItemPhone" jdbcType="VARCHAR" column="user_item_phone"/>
+        <result property="userItemEmail" jdbcType="VARCHAR" column="user_item_email"/>
+        <result property="userItemNickname" jdbcType="VARCHAR" column="user_item_nickname"/>
+        <result property="userItemIcon" jdbcType="VARCHAR" column="user_item_icon"/>
+    </resultMap>
+
+    <select id="selectUserDetail" resultMap="BaseResultMap">
+        SELECT user_account,create_time, user_item_id, user_item_nickname, user_item_phone, user_item_email, user_item_icon, update_time
+        FROM user u left join user_item ui
+        on u.user_id = ui.user_id
+        WHERE u.user_id = #{userId}
+        AND user_status = 1;
+    </select>
+</mapper>
