@@ -6,7 +6,11 @@ public enum ErrorStatus {
     SERVICE_ERROR(40001, "service  error", "数据异常, 请重新在试"),
     DAO_ERROR(40001, "service  error", "数据层异常"),
     SYS_ERROR(40004, "sys  error", "系统繁忙, 请重新在试"),
-    DATA_ERROR(40005,"data error","数据异常");
+    DATA_ERROR(40005,"data error","数据异常"),
+    REGISTER_NAME_ERROR(40003, "register  error","用户名存在"),
+    REGISTER_PHONE_ERROR(40003, "register  error","手机号存在"),
+    REGISTER_EMAIL_ERROR(40003, "register  error","邮箱存在");
+
     int status;
     String msg;
     String tip;

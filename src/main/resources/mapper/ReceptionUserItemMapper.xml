@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.ReceptionUserItemMapper">
+  <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.UserItem">
+    <id column="user_item_id" jdbcType="INTEGER" property="userItemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_item_nickname" jdbcType="VARCHAR" property="userItemNickname" />
+    <result column="user_item_phone" jdbcType="VARCHAR" property="userItemPhone" />
+    <result column="user_item_email" jdbcType="VARCHAR" property="userItemEmail" />
+    <result column="user_item_icon" jdbcType="VARCHAR" property="userItemIcon" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+
+    select user_item_id, user_item_nickname, user_item_phone, user_item_email, user_item_icon
+    from user_item
+    where user_id = #{userId}
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select user_item_phone
+    from user_item
+    where user_item_phone = #{userItemPhone}
+  </select>
+
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    select user_item_email
+    from user_item
+    where user_item_email = #{userItemEmail}
+  </select>
+
+  <insert id="insertPhoneAndEmail">
+        insert into user_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userItem.userId != null">
+        user_id,
+      </if>
+      <if test="userItem.userItemNickname != null and userItem.userItemNickname != ''">
+        user_item_nickname,
+      </if>
+      <if test="userItem.userItemPhone != null and userItem.userItemPhone != ''">
+        user_item_phone,
+      </if>
+      <if test="userItem.userItemEmail != null and userItem.userItemEmail != ''">
+        user_item_email,
+      </if>
+      <if test="userItem.userItemIcon != null and userItem.userItemIcon != ''">
+        user_item_icon
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userItem.userId != null">
+        #{userItem.userId},
+      </if>
+      <if test="userItem.userItemNickname != null and userItem.userItemNickname != ''">
+        #{userItem.userItemNickname},
+      </if>
+      <if test="userItem.userItemPhone != null and userItem.userItemPhone != ''">
+       #{userItem.userItemPhone},
+      </if>
+      <if test="userItem.userItemEmail != null and userItem.userItemEmail != ''">
+       #{userItem.userItemEmail},
+      </if>
+      <if test="userItem.userItemIcon != null and userItem.userItemIcon != ''">
+        #{userItem.userItemIcon}
+      </if>
+    </trim>
+  </insert>
+</mapper>

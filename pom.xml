@@ -25,6 +25,7 @@
     <mysql.version>8.0.20</mysql.version>
     <jackson.version>2.11.1</jackson.version>
     <lombok.version>1.18.12</lombok.version>
+    <session.version>4.0.1</session.version>
   </properties>
 
   <dependencies>
@@ -97,11 +98,11 @@
       <version>${lombok.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>compile</scope>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${session.version}</version>
     </dependency>
+
 
   </dependencies>
 
