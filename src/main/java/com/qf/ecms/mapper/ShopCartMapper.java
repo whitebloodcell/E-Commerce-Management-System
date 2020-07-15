@@ -37,7 +37,8 @@ public interface ShopCartMapper {
      *
      * @param cartId
      * @param count
-     * @return 修改成功数量
+     * @return 修改购物车数量
      */
     int updateShopCartCount(@Param("cartId") int cartId, @Param("count") int count);
+
 }
