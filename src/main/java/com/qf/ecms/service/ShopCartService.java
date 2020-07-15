@@ -12,4 +12,11 @@ public interface ShopCartService {
      * @return
      */
     int addShopCar (ShopCart shopCart) throws ServiceException;
+
+    /**
+     * 修改购物车商品数量
+     * @param shopCart 购物车对象
+     * @return
+     */
+    int updateShopCartCount (ShopCart shopCart) throws ServiceException;
 }
