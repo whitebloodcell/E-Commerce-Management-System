@@ -27,5 +27,12 @@ public interface ShopCartService {
      * @param userId
      * @return 购物车列表
      */
-    List<ShopCart> findAllCarts (int userId);
+    List<ShopCart> findAllCarts (int userId) throws ServiceException;
+
+    /**
+     * 批量删除购物车记录
+     * @param cartIds
+     * @return
+     */
+    int deleteShopCart (List<Integer> cartIds);
 }

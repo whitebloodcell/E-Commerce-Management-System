@@ -49,4 +49,11 @@ public interface ShopCartMapper {
      * @return
      */
     List<ShopCart> selectAllShopCartByUserId(@Param("userId") int userId);
+
+    /**
+     * 根据购物车主键修改购物车表的status为0,意为删除状态
+     * @param cartId
+     * @return
+     */
+    int updateShopCartStatusByShopCartId (@Param("cartId") List<Integer> cartId);
 }

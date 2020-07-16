@@ -6,7 +6,8 @@ public enum ErrorStatus {
     SERVICE_ERROR(40001, "service  error", "数据异常, 请重新在试"),
     DAO_ERROR(40001, "service  error", "数据层异常"),
     SYS_ERROR(40004, "sys  error", "系统繁忙, 请重新在试"),
-    DATA_ERROR(40005,"data error","数据异常");
+    DATA_ERROR(40005,"data error","数据异常"),
+    DELETE_ERROR(40006,"delete error","删除失败");
     int status;
     String msg;
     String tip;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 购物车控制层
@@ -61,6 +62,11 @@ public class ShopCartController {
         return responseEntity;
     }
 
+    /**
+     * 购物车列表请求方法
+     * @param userId 用户id
+     * @return 购物车对象集合
+     */
     @GetMapping("/list")
     public ResponseEntity<List<ShopCart>> shopCartList (@RequestParam int userId){
         ResponseEntity<List<ShopCart>> responseEntity = new ResponseEntity<>();
@@ -72,6 +78,28 @@ public class ShopCartController {
                 responseEntity=responseEntity.error(ErrorStatus.DATA_ERROR);
             }
         }catch (Exception e){
+            responseEntity = ResponseEntity.error();
+        }
+        return responseEntity;
+    }
+
+    /**
+     * 删除购物车请求方法
+     * @param map 购物车id集合
+     * @return
+     */
+    @PostMapping("/delete")
+    public ResponseEntity<Integer> deleteShopCarts(@RequestBody Map<String,List<Integer>> map) {
+        ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
+        List<Integer> cartIds = map.get("cartIds");
+        try {
+            int row = shopCartService.deleteShopCart(cartIds);
+            if (row > 0) {
+                return responseEntity.success(row);
+            } else {
+                responseEntity = responseEntity.error(ErrorStatus.DELETE_ERROR);
+            }
+        } catch (Exception e) {
             responseEntity = ResponseEntity.error();
         }
         return responseEntity;

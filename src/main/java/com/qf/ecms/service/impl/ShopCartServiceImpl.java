@@ -85,8 +85,18 @@ public class ShopCartServiceImpl implements ShopCartService {
      * @return 购物车列表
      */
     @Override
-    public List<ShopCart> findAllCarts(int userId) {
+    public List<ShopCart> findAllCarts(int userId) throws ServiceException{
         return shopCartMapper.selectAllShopCartByUserId(userId);
+    }
+
+    /**
+     * 批量删除购物车
+     * @param cartIds
+     * @return
+     */
+    @Override
+    public int deleteShopCart(List<Integer> cartIds) {
+        return shopCartMapper.updateShopCartStatusByShopCartId(cartIds);
     }
 
 
