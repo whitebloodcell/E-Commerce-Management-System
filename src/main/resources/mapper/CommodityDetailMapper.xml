@@ -152,7 +152,7 @@
   </resultMap>
 
     <select id="selectAllCommodityDetail" resultMap="CommodityDetailResultMap">
-      SELECT c.cid, c.commodity_title, c.comment_picture, c.ssid, c.psid, c.is_new, c.enable, cd.cdid, cd.details_content, cd.model, cd.weight, cd.create_time, cd.cid
+      SELECT c.cid, c.commodity_title, c.commodity_picture, c.ssid, c.psid, c.is_new, c.enable, cd.cdid, cd.details_content, cd.model, cd.weight, cd.create_time, cd.cid
       FROM commodity c LEFT JOIN commodity_detail cd ON c.cid = cd.cid
       WHERE c.enable = 1
       AND c.cid = #{cid}
