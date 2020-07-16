@@ -14,23 +14,4 @@
         INSERT INTO user_item(user_id,user_item_nickname,user_item_phone,user_item_email,user_item_icon)
         VALUES (#{userItemDto.userId},#{userItemDto.userItemNickname},#{userItemDto.userItemPhone},#{userItemDto.userItemEmail},#{userItemDto.userItemIcon})
     </insert>
-
-    <update id="updateUserItemById">
-        update user_item
-        <set>
-            <if test="userItemDto.userItemNickname!=null">
-                user_item_nickname=#{userItemDto.userItemNickname},
-            </if>
-            <if test="userItemDto.userItemPhone!=null">
-                user_item_phone=#{userItemDto.userItemPhone},
-            </if>
-            <if test="userItemDto.userItemEmail!=null">
-                user_item_email=#{userItemDto.userItemEmail},
-            </if>
-            <if test="userItemDto.userItemIcon!=null">
-                user_item_icon=#{userItemDto.userItemIcon}
-            </if>
-        </set>
-        WHERE user_id = #{userItemDto.userId}
-    </update>
 </mapper>

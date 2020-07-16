@@ -5,7 +5,6 @@
         <id column="admin_id" jdbcType="INTEGER" property="adminId"/>
         <result column="admin_name" jdbcType="VARCHAR" property="adminName"/>
         <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
-        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
         <result column="admin_status" jdbcType="INTEGER" property="adminStatus" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <association property="adminDetail" javaType="com.qf.ecms.domain.entity.AdminDetail">
@@ -18,32 +17,26 @@
             <result column="qq" jdbcType="VARCHAR" property="qq" />
             <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         </association>
-        <association property="roleDto" javaType="com.qf.ecms.domain.dto.RoleDto">
-            <id column="role_id" jdbcType="INTEGER" property="roleId" />
-            <result column="role_name" jdbcType="VARCHAR" property="roleName" />
-            <result column="description" jdbcType="VARCHAR" property="description" />
-        </association>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         admin_id, admin_name, admin_password, admin_status, create_time
     </sql>
 
-    <select id="selectByName" resultMap="BaseResultMap">
+    <select id="selectByName" resultType="com.qf.ecms.domain.entity.Admin">
         SELECT admin_name,admin_password
         FROM admin
         WHERE admin_name = #{adminName}
         AND status = 1;
     </select>
 
-    <select id="list" resultMap="BaseResultMap">
-        select a.admin_id, a.admin_name, a.admin_password, a.role_id,a.admin_status, a.create_time,b.admin_detail_id, b.admin_id, b.sex, b.age, b.phone, b.email, b.qq, b.update_time,r.role_id,r.role_name,r.description
+    <select id="list" resultType="com.qf.ecms.domain.entity.Admin">
+        select a.admin_id, a.admin_name, a.admin_password, a.admin_status, a.create_time,b.admin_detail_id, b.admin_id, b.sex, b.age, b.phone, b.email, b.qq, b.update_time
         from admin a
         LEFT JOIN admin_detail b ON a.admin_id = b.admin_id
-        LEFT JOIN role r ON a.role_id = r.role_id
         limit #{limit},#{size}
     </select>
-    <select id="selectByNameOrTime" resultMap="BaseResultMap">
+    <select id="selectByNameOrTime" resultType="com.qf.ecms.domain.entity.Admin">
 
     </select>
 

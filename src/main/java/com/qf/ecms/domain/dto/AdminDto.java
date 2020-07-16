@@ -24,11 +24,6 @@ public class AdminDto {
     private String adminPassword;
 
     /**
-     * 角色id,关联角色表
-     */
-    private Integer roleId;
-
-    /**
      * 状态码: 0是冻结      1是正常
      */
     private Integer adminStatus;
@@ -39,6 +34,4 @@ public class AdminDto {
     private Date createTime;
 
     private AdminDetail adminDetail;
-
-    private RoleDto roleDto;
 }
