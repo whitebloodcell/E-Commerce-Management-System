@@ -28,10 +28,13 @@ public class ReceptionOrderServiceImpl implements ReceptionOrderService {
 
     @Resource
     ReceptionOrderMapper receptionOrderMapper;
+
     @Resource
     ReceptionOrderItemMapper receptionOrderItemMapper;
+
     @Resource
     ReceptionShopCartMapper receptionShopCartMapper;
+
     @Resource
     ReceptionColorSizeMapper receptionColorSizeMapper;
 
