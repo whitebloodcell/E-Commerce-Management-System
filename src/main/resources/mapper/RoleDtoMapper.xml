@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.RoleDtoMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.RoleDto">
+        <!--@mbg.generated-->
+        <!--@Table `role`-->
+        <id column="role_id" jdbcType="INTEGER" property="roleId" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <collection property="menus" ofType="com.qf.ecms.domain.entity.Menu">
+            <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+            <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+            <result column="role_id" jdbcType="INTEGER" property="roleId" />
+        </collection>
+        <collection property="admins" ofType="com.qf.ecms.domain.dto.AdminDto">
+            <id column="admin_id" jdbcType="INTEGER" property="adminId"/>
+            <result column="admin_name" jdbcType="VARCHAR" property="adminName"/>
+            <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
+            <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+            <result column="admin_status" jdbcType="INTEGER" property="adminStatus" />
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        </collection>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        role_id, role_name, description
+    </sql>
+    <insert id="insert" parameterType="com.qf.ecms.domain.dto.RoleDto" keyColumn="role_id" keyProperty="roleDto.roleId" useGeneratedKeys="true">
+        INSERT INTO role(role_name, description)
+        VALUES (#{roleDto.roleName},#{roleDto.description})
+    </insert>
+</mapper>
