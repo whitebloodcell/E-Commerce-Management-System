@@ -35,7 +35,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     @Transactional
     public int addShopCar(ShopCart shopCart) throws ServiceException {
         //查看当前商品的库存
-        int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
+        int stock = colorSizeMapper.selectStockByCsid(shopCart.getCsid());
         int row = 0;
         if(stock>=shopCart.getCount()){
             //查询当前商品的购物车记录
@@ -66,7 +66,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     @Override
     public int updateShopCartCount(ShopCart shopCart) throws ServiceException {
         //查看当前商品的库存
-        int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
+        int stock = colorSizeMapper.selectStockByCsid(shopCart.getCsid());
         //购物车商品要修改的数量
         int count = shopCart.getCount();
         //修改成功数

@@ -20,6 +20,11 @@ public class ShopCartController {
     @Resource
     ShopCartService shopCartService;
 
+    /**
+     * 添加购物车请求方法
+     * @param shopCart 购物车对象
+     * @return
+     */
     @PostMapping("/add")
     public ResponseEntity<Integer> AddShopCart(@RequestBody ShopCart shopCart) {
         ResponseEntity<Integer> responseEntity = new ResponseEntity<>();

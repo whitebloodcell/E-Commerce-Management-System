@@ -1,6 +1,6 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.CommodityDetail;
+import com.qf.ecms.domain.dto.CommodityDetailDto;import com.qf.ecms.domain.entity.CommodityDetail;import org.apache.ibatis.annotations.Param;
 
 public interface CommodityDetailMapper {
     int deleteByPrimaryKey(Integer cdid);
@@ -14,4 +14,12 @@ public interface CommodityDetailMapper {
     int updateByPrimaryKeySelective(CommodityDetail record);
 
     int updateByPrimaryKey(CommodityDetail record);
+
+    /**
+     * 根据商品id查询商品相关的所有信息
+     *
+     * @param cid
+     * @return
+     */
+    CommodityDetailDto selectAllCommodityDetail(@Param("cid") int cid);
 }
