@@ -85,7 +85,7 @@ public class ReceptionOrderServiceImpl implements ReceptionOrderService {
             OrderItem orderItem = new OrderItem();
             orderItem.setOrderId(order.getOrderId());
             orderItem.setUserId(userId);
-            orderItem.setCommodityPic(shopCart.getCommentPicture());
+            orderItem.setCommodityPic(shopCart.getCommodityPicture());
             orderItem.setCommodityTitle(shopCart.getCommodityTitle());
             orderItem.setCommodityPrice(shopCart.getPresentPrice());
             orderItem.setCommodityQuantity(shopCart.getCount());

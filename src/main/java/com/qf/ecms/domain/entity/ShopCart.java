@@ -1,5 +1,6 @@
 package com.qf.ecms.domain.entity;
 
+import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
@@ -52,7 +53,7 @@ public class ShopCart {
     /**
      * 现价
      */
-    private Long presentPrice;
+    private BigDecimal presentPrice;
 
     /**
      * 状态码 1:正常 0:删除
