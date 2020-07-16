@@ -42,4 +42,9 @@ public class ColorSize {
      * 商品id
      */
     private Integer cid;
+
+    /**
+     * 版本号
+     */
+    private Integer version;
 }

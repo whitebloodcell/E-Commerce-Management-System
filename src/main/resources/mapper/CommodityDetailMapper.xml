@@ -106,8 +106,7 @@
   </update>
 
 
-
-
+  <!-- 自写lsd -->
   <insert id="insertAllCommodity" keyProperty="commodityDetail.cdid" useGeneratedKeys="true">
     insert into
     commodity_detail
@@ -142,6 +141,25 @@
     </trim>
 
   </insert>
+  <update id="updateCommodityDetail" parameterType="com.qf.ecms.domain.entity.CommodityDetail">
+    update commodity_detail
+    <trim prefix="set" suffixOverrides=",">
+      <if test="commodityDetail.detailsContent != null and commodityDetail.detailsContent != ''">
+        details_content = #{commodityDetail.detailsContent},
+      </if>
+      <if test="commodityDetail.model != null and commodityDetail.model != ''">
+        model = #{commodityDetail.model},
+      </if>
+      <if test="commodityDetail.weight != null">
+        weight = #{commodityDetail.weight},
+      </if>
+      <if test="commodityDetail.createTime != null">
+        create_time = #{commodityDetail.createTime}
+      </if>
+    </trim>
+    where
+    cid = #{commodityDetail.cid}
+  </update>
 
 
 </mapper>

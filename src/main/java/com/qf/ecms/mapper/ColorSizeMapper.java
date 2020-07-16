@@ -15,5 +15,9 @@ public interface ColorSizeMapper {
 
     int updateByPrimaryKey(ColorSize record);
 
+    //添加商品到4个表中的一个
     int insertAllCommodity(@Param("colorSize") ColorSize colorSize);
+
+    //在任意一个表中修改任意的商品信息
+    int updateColorSize(@Param("colorSize") ColorSize colorSize);
 }
