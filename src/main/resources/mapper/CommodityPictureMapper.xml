@@ -70,6 +70,14 @@
     where pid = #{pid,jdbcType=INTEGER}
   </update>
 
+
+
+
+
+
+
+
+  <!-- 自写lsd -->
   <insert id="insertAllCommodity">
     insert into commodity_picture
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -99,4 +107,14 @@
     WHERE cp.cid = #{cid}
     AND c.enable=1
   </select>
+  <update id="updateCommodityPicture" parameterType="com.qf.ecms.domain.entity.CommodityPicture">
+    update commodity_picture
+    <trim prefix="set" suffixOverrides=",">
+      <if test="param1.pictureUrl != null and param1.pictureUrl != ''">
+        picture_url = #{commodityPicture.pictureUrl}
+      </if>
+    </trim>
+    where
+    cid = #{commodityPicture.cid}
+  </update>
 </mapper>

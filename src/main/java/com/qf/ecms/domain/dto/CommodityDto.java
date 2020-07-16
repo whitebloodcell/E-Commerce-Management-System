@@ -26,11 +26,11 @@ public class CommodityDto {
     private Integer offset;
 
     //搜索商品时需要的字段返回
-    private Integer stock;
-    private BigDecimal originalPrice;
-    private BigDecimal presentPrice;
-    private Integer cid;
-    private String commodityTitle;
-    private Integer enable;
-    private Date createTime;
+//    private Integer stock;
+//    private BigDecimal originalPrice;
+//    private BigDecimal presentPrice;
+//    private Integer cid;
+//    private String commodityTitle;
+//    private Integer enable;
+//    private Date createTime;
 }
