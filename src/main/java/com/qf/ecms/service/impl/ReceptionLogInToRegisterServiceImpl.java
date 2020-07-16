@@ -64,6 +64,8 @@ public class ReceptionLogInToRegisterServiceImpl implements ReceptionLogInToRegi
         User user = registerDto.getUser();
         //用户账号
         String userAccount = user.getUserAccount();
+        //密码
+        String userPassword = user.getUserAccount();
         //手机号
         String userItemPhone = registerDto.getPhone();
         //邮箱

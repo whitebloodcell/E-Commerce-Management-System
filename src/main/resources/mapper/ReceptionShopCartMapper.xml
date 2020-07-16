@@ -7,7 +7,7 @@
     <result property="count" column="count"/>
     <result property="cid" column="cid"/>
     <result property="commodityTitle" column="commodity_title"/>
-    <result property="commentPicture" column="comment_picture"/>
+    <result property="commodityPicture" column="comment_picture"/>
     <result property="colorName" column="color_name"/>
     <result property="sizeName" column="size_name"/>
     <result property="csid" column="csid"/>
