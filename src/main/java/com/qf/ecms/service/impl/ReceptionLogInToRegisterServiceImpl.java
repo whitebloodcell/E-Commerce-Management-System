@@ -10,7 +10,6 @@ import com.qf.ecms.mapper.ReceptionUserMapper;
 import com.qf.ecms.service.ReceptionLogInToRegisterService;
 import com.qf.ecms.utils.ErrorStatus;
 import com.qf.ecms.utils.TestReg;
-import org.apache.ibatis.io.ResolverUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
