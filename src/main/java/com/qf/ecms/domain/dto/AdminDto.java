@@ -38,7 +38,7 @@ public class AdminDto {
      */
     private Date createTime;
 
-    private AdminDetail adminDetail;
+    private AdminDetailDto adminDetailDto;
 
     private RoleDto roleDto;
 }

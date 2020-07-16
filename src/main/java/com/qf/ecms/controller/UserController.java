@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -105,7 +106,8 @@ public class UserController {
 
     //批量删除
     @DeleteMapping("/deleteBatch")
-    public ResponseEntity<Integer> deleteBatch(List<Integer> ids) throws ServiceException{
+    public ResponseEntity<Integer> deleteBatch(@RequestBody Map<String,List<Integer>> map) throws ServiceException{
+        List<Integer> ids = map.get("ids");
         int count = userDtoService.deleteBatch(ids);
         return ResponseEntity.success(count);
 
@@ -127,7 +129,7 @@ public class UserController {
 
     //修改会员信息
     @PutMapping("/update")
-    public ResponseEntity<Integer> updateByPrimaryKey(UserDto userDto) throws ServiceException{
+    public ResponseEntity<Integer> updateByPrimaryKey(@RequestBody UserDto userDto) throws ServiceException{
         int count = userDtoService.updateById(userDto);
         return ResponseEntity.success(count);
 

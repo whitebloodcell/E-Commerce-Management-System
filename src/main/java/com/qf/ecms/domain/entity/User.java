@@ -29,6 +29,4 @@ public class User {
      * 创建时间
      */
     private Date createTime;
-
-
 }

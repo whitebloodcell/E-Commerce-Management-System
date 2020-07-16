@@ -15,4 +15,19 @@ public interface AdminDtoMapper {
 
     //查询管理员
     List<AdminDto> selectByNameOrTime(@Param("adminName") String adminName,@Param("createTime") String createTime,@Param("limit") int limit,@Param("size") int size);
+
+    //添加管理员
+    int insert(@Param("adminDto") AdminDto adminDto);
+
+    //修改管理员信息
+    int update(@Param("adminDto") AdminDto adminDto);
+
+    //删除管理员
+    int delete(@Param("adminId") int adminId);
+
+    //批量删除管理员
+    int deleteBatch(@Param("adminIds") List<Integer> adminIds);
+
+    //激活管理员
+    int active(@Param("adminId") int adminId);
 }

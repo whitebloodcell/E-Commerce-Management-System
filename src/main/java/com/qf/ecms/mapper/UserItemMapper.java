@@ -1,7 +1,6 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.UserItem;
-import org.apache.ibatis.annotations.Param;
+import com.qf.ecms.domain.entity.UserItem;import org.apache.ibatis.annotations.Param;
 
 public interface UserItemMapper {
     int deleteByPrimaryKey(Integer userItemId);
@@ -18,6 +17,7 @@ public interface UserItemMapper {
 
     /**
      * 根据用户id修改用户详情信息
+     *
      * @param userItem
      * @return
      */

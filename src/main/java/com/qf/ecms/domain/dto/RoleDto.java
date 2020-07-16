@@ -25,5 +25,5 @@ public class RoleDto {
 
     private List<Menu> menus;
 
-    private List<Admin> admins;
+    private List<AdminDto> admins;
 }

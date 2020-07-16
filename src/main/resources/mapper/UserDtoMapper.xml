@@ -36,7 +36,7 @@
         b.update_time
         from `user` a
         LEFT JOIN user_item b ON a.user_id = b.user_id
-        WHERE user_item_nickname = #{userItemNickname}
+        WHERE user_item_nickname like CONCAT('%',#{userItemNickname},'%')
         OR create_time BETWEEN CONCAT(#{createTime},' 00:00:00') AND CONCAT(#{createTime},' 23:59:59')
         limit #{limit},#{size}
     </select>
@@ -82,9 +82,6 @@
             </if>
             <if test="userDto.userStatus != null">
                 user_status = #{userDto.userStatus,jdbcType=INTEGER},
-            </if>
-            <if test="userDto.createTime != null">
-                create_time = #{userDto.createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where user_id = #{userDto.userId,jdbcType=INTEGER}
