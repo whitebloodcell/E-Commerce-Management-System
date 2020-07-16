@@ -1,120 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.ecms.mapper.CommodityMapper">
-  <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.Commodity">
-    <!--@mbg.generated-->
-    <!--@Table commodity-->
-    <id column="cid" jdbcType="INTEGER" property="cid" />
-    <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
-    <result column="comment_picture" jdbcType="VARCHAR" property="commentPicture" />
-    <result column="ssid" jdbcType="INTEGER" property="ssid" />
-    <result column="psid" jdbcType="INTEGER" property="psid" />
-    <result column="is_new" jdbcType="INTEGER" property="isNew" />
-    <result column="enable" jdbcType="INTEGER" property="enable" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    cid, commodity_title, comment_picture, ssid, `psid`, is_new, `enable`
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from commodity
-    where cid = #{cid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from commodity
-    where cid = #{cid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into commodity (commodity_title, comment_picture, ssid, 
-      `psid`, is_new, `enable`
-      )
-    values (#{commodityTitle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{ssid,jdbcType=INTEGER}, 
-      #{psid,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into commodity
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="commodityTitle != null">
-        commodity_title,
-      </if>
-      <if test="commentPicture != null">
-        comment_picture,
-      </if>
-      <if test="ssid != null">
-        ssid,
-      </if>
-      <if test="psid != null">
-        `psid`,
-      </if>
-      <if test="isNew != null">
-        is_new,
-      </if>
-      <if test="enable != null">
-        `enable`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="commodityTitle != null">
-        #{commodityTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="commentPicture != null">
-        #{commentPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="ssid != null">
-        #{ssid,jdbcType=INTEGER},
-      </if>
-      <if test="psid != null">
-        #{psid,jdbcType=INTEGER},
-      </if>
-      <if test="isNew != null">
-        #{isNew,jdbcType=INTEGER},
-      </if>
-      <if test="enable != null">
-        #{enable,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.Commodity">
-    <!--@mbg.generated-->
-    update commodity
-    <set>
-      <if test="commodityTitle != null">
-        commodity_title = #{commodityTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="commentPicture != null">
-        comment_picture = #{commentPicture,jdbcType=VARCHAR},
-      </if>
-      <if test="ssid != null">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.Commodity">
+        <!--@mbg.generated-->
+        <!--@Table commodity-->
+        <id column="cid" jdbcType="INTEGER" property="cid"/>
+        <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle"/>
+        <result column="comment_picture" jdbcType="VARCHAR" property="commentPicture"/>
+        <result column="ssid" jdbcType="INTEGER" property="ssid"/>
+        <result column="psid" jdbcType="INTEGER" property="psid"/>
+        <result column="is_new" jdbcType="INTEGER" property="isNew"/>
+        <result column="enable" jdbcType="INTEGER" property="enable"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        cid, commodity_title, commodity_picture, ssid, `psid`, is_new, `enable`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from commodity
+        where cid = #{cid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from commodity
+        where cid = #{cid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into commodity (commodity_title, commodity_picture, ssid,
+        `psid`, is_new, `enable`
+        )
+        values (#{commodityTitle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{ssid,jdbcType=INTEGER},
+        #{psid,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into commodity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commodityTitle != null">
+                commodity_title,
+            </if>
+            <if test="commentPicture != null">
+                commodity_picture,
+            </if>
+            <if test="ssid != null">
+                ssid,
+            </if>
+            <if test="psid != null">
+                `psid`,
+            </if>
+            <if test="isNew != null">
+                is_new,
+            </if>
+            <if test="enable != null">
+                `enable`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commodityTitle != null">
+                #{commodityTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="commentPicture != null">
+                #{commentPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="ssid != null">
+                #{ssid,jdbcType=INTEGER},
+            </if>
+            <if test="psid != null">
+                #{psid,jdbcType=INTEGER},
+            </if>
+            <if test="isNew != null">
+                #{isNew,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                #{enable,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.Commodity">
+        <!--@mbg.generated-->
+        update commodity
+        <set>
+            <if test="commodityTitle != null">
+                commodity_title = #{commodityTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="commentPicture != null">
+                commodity_picture = #{commentPicture,jdbcType=VARCHAR},
+            </if>
+            <if test="ssid != null">
+                ssid = #{ssid,jdbcType=INTEGER},
+            </if>
+            <if test="psid != null">
+                `psid` = #{psid,jdbcType=INTEGER},
+            </if>
+            <if test="isNew != null">
+                is_new = #{isNew,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                `enable` = #{enable,jdbcType=INTEGER},
+            </if>
+        </set>
+        where cid = #{cid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.Commodity">
+        <!--@mbg.generated-->
+        update commodity
+        set commodity_title = #{commodityTitle,jdbcType=VARCHAR},
+        commodity_picture = #{commentPicture,jdbcType=VARCHAR},
         ssid = #{ssid,jdbcType=INTEGER},
-      </if>
-      <if test="psid != null">
         `psid` = #{psid,jdbcType=INTEGER},
-      </if>
-      <if test="isNew != null">
         is_new = #{isNew,jdbcType=INTEGER},
-      </if>
-      <if test="enable != null">
-        `enable` = #{enable,jdbcType=INTEGER},
-      </if>
-    </set>
-    where cid = #{cid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.Commodity">
-    <!--@mbg.generated-->
-    update commodity
-    set commodity_title = #{commodityTitle,jdbcType=VARCHAR},
-      comment_picture = #{commentPicture,jdbcType=VARCHAR},
-      ssid = #{ssid,jdbcType=INTEGER},
-      `psid` = #{psid,jdbcType=INTEGER},
-      is_new = #{isNew,jdbcType=INTEGER},
-      `enable` = #{enable,jdbcType=INTEGER}
-    where cid = #{cid,jdbcType=INTEGER}
-  </update>
+        `enable` = #{enable,jdbcType=INTEGER}
+        where cid = #{cid,jdbcType=INTEGER}
+    </update>
 </mapper>

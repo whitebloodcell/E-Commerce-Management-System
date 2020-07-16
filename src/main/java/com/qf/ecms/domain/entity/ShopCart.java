@@ -32,7 +32,7 @@ public class ShopCart {
     /**
      * 商品封面图
      */
-    private String commentPicture;
+    private String commodityPicture;
 
     /**
      * 颜色名

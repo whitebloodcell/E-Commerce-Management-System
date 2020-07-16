@@ -80,7 +80,7 @@ public class ShopCartController {
             if(cartList.size()>0){
                 responseEntity=responseEntity.success(cartList);
             }else {
-                responseEntity=responseEntity.error(ErrorStatus.DATA_ERROR);
+                responseEntity=responseEntity.error(20001,"购物车空空如也");
             }
         }catch (Exception e){
             responseEntity = ResponseEntity.error();

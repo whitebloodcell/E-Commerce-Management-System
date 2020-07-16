@@ -73,6 +73,17 @@
         SET is_del=1
         WHERE address_id = #{addressId}
     </update>
+    <update id="updateAddressUnDefault">
+        UPDATE user_address
+        SET is_default = 0
+        WHERE is_default = 1
+        AND user_id = #{userId}
+    </update>
+    <update id="updateAddressDefault">
+        UPDATE user_address
+        SET is_default = 1
+        WHERE address_id = #{addressId}
+    </update>
 
 
 </mapper>

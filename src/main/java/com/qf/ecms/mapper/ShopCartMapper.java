@@ -1,8 +1,6 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.ShopCart;import com.qf.ecms.exception.DaoException;import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.qf.ecms.domain.entity.ShopCart;import com.qf.ecms.exception.DaoException;import org.apache.ibatis.annotations.Param;import java.util.List;
 
 public interface ShopCartMapper {
     int deleteByPrimaryKey(Integer cartId);
@@ -45,6 +43,7 @@ public interface ShopCartMapper {
 
     /**
      * 根据用户主键查询用户的所有购物车记录
+     *
      * @param userId
      * @return
      */
@@ -52,8 +51,9 @@ public interface ShopCartMapper {
 
     /**
      * 根据购物车主键修改购物车表的status为0,意为删除状态
+     *
      * @param cartId
      * @return
      */
-    int updateShopCartStatusByShopCartId (@Param("cartId") List<Integer> cartId);
+    int updateShopCartStatusByShopCartId(@Param("cartId") List<Integer> cartId);
 }
