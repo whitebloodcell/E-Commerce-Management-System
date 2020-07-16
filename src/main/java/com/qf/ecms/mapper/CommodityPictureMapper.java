@@ -2,7 +2,6 @@ package com.qf.ecms.mapper;
 
 import com.qf.ecms.domain.entity.CommodityPicture;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 public interface CommodityPictureMapper {
@@ -22,8 +21,9 @@ public interface CommodityPictureMapper {
 
     /**
      * 根据商品id查看当前所有商品图片
+     *
      * @param cid
      * @return
      */
-    List<CommodityPicture> selectAllPicByCid (@Param("cid") int cid);
+    List<CommodityPicture> selectAllPicByCid(@Param("cid") int cid);
 }

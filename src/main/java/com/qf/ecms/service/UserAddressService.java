@@ -23,7 +23,7 @@ public interface UserAddressService {
 
     /**
      * 修改用户收货地址
-     * @param userAddress
+     * @param userAddress 收货地址对象
      * @return
      */
     int updateUserAddress (UserAddress userAddress);
@@ -34,4 +34,12 @@ public interface UserAddressService {
      * @return
      */
     int deleteAddress(int addressId);
+
+    /**
+     * 修改默认的收货地址
+     * @param userId
+     * @param addressId
+     * @return
+     */
+    int updateDefaultAddress (int userId,int addressId) throws ServiceException;
 }

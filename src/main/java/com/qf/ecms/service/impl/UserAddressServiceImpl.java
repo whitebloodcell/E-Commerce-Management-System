@@ -18,7 +18,14 @@ public class UserAddressServiceImpl implements UserAddressService {
     UserAddressMapper userAddressMapper;
 
     /**
-     * 添加用户守护地址
+     * 添加用户收货地址
+     *
+     * 1.查询收货地址保存数
+     * 2.保存数等于10则跑出异常
+     * 3.判断前端传过来的购物车是否是设为默认
+     * 4.是默认则修改之前默认的地址为非默认
+     * 5.添加当前收货地址到数据库
+     *
      * @param userAddress 用户地址对象
      * @return
      */
@@ -30,10 +37,16 @@ public class UserAddressServiceImpl implements UserAddressService {
         int row = 0;
         //查询用户保存的记录数
         int count = userAddressMapper.selectAddressCount(userAddress.getUserId());
-        //保存记录等于10代表记录数已满,不满则插入数据
+        //保存记录等于10代表记录数已满
         if(count==10){
             throw new ServiceException("收货地址最多只能添加10条",20000);
+        }else if(userAddress.getIsDefault()==1){
+            //把所有当前用户的地址设为非默认
+            userAddressMapper.updateAddressUnDefault(userAddress.getUserId());
+            //插入收货地址
+            row = userAddressMapper.insertAddress(userAddress);
         }else {
+            //插入收货地址
             row = userAddressMapper.insertAddress(userAddress);
         }
         return row;
@@ -67,6 +80,25 @@ public class UserAddressServiceImpl implements UserAddressService {
     @Override
     public int deleteAddress(int addressId) {
         return userAddressMapper.updateAddressIsDel(addressId);
+    }
+
+    /**
+     * 修改默认的收货地址
+     *
+     * 1.把所有地址设为非默认
+     * 2.把需要设为默认的地址设为默认
+     *
+     * @param userId 用户ID
+     * @param addressId 地址表ID
+     * @return
+     */
+    @Override
+    @Transactional
+    public int updateDefaultAddress(int userId, int addressId) throws ServiceException{
+        //把所有地址设为非默认
+        userAddressMapper.updateAddressUnDefault(userId);
+        int row = userAddressMapper.updateAddressDefault(addressId);
+        return row;
     }
 
 

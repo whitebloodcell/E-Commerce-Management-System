@@ -9,7 +9,7 @@
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
-    <result column="comment_picture" jdbcType="VARCHAR" property="commentPicture" />
+    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
     <result column="color_name" jdbcType="VARCHAR" property="colorName" />
     <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
     <result column="csid" jdbcType="INTEGER" property="csid" />
@@ -18,7 +18,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    cart_id, user_id, `count`, cid, commodity_title, comment_picture, color_name, size_name, 
+    cart_id, user_id, `count`, cid, commodity_title, commodity_picture, color_name, size_name, 
     csid, present_price, `status`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,11 +36,11 @@
   <insert id="insert" keyColumn="cart_id" keyProperty="cartId" parameterType="com.qf.ecms.domain.entity.ShopCart" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into shop_cart (user_id, `count`, cid, 
-      commodity_title, comment_picture, color_name, 
+      commodity_title, commodity_picture, color_name, 
       size_name, csid, present_price, 
       `status`)
     values (#{userId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
-      #{commodityTitle,jdbcType=VARCHAR}, #{commentPicture,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR}, 
+      #{commodityTitle,jdbcType=VARCHAR}, #{commodityPicture,jdbcType=VARCHAR}, #{colorName,jdbcType=VARCHAR}, 
       #{sizeName,jdbcType=VARCHAR}, #{csid,jdbcType=INTEGER}, #{presentPrice,jdbcType=DECIMAL}, 
       #{status,jdbcType=INTEGER})
   </insert>
@@ -60,8 +60,8 @@
       <if test="commodityTitle != null">
         commodity_title,
       </if>
-      <if test="commentPicture != null">
-        comment_picture,
+      <if test="commodityPicture != null">
+        commodity_picture,
       </if>
       <if test="colorName != null">
         color_name,
@@ -92,8 +92,8 @@
       <if test="commodityTitle != null">
         #{commodityTitle,jdbcType=VARCHAR},
       </if>
-      <if test="commentPicture != null">
-        #{commentPicture,jdbcType=VARCHAR},
+      <if test="commodityPicture != null">
+        #{commodityPicture,jdbcType=VARCHAR},
       </if>
       <if test="colorName != null">
         #{colorName,jdbcType=VARCHAR},
@@ -128,8 +128,8 @@
       <if test="commodityTitle != null">
         commodity_title = #{commodityTitle,jdbcType=VARCHAR},
       </if>
-      <if test="commentPicture != null">
-        comment_picture = #{commentPicture,jdbcType=VARCHAR},
+      <if test="commodityPicture != null">
+        commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
       </if>
       <if test="colorName != null">
         color_name = #{colorName,jdbcType=VARCHAR},
@@ -156,7 +156,7 @@
       `count` = #{count,jdbcType=INTEGER},
       cid = #{cid,jdbcType=INTEGER},
       commodity_title = #{commodityTitle,jdbcType=VARCHAR},
-      comment_picture = #{commentPicture,jdbcType=VARCHAR},
+      commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
       color_name = #{colorName,jdbcType=VARCHAR},
       size_name = #{sizeName,jdbcType=VARCHAR},
       csid = #{csid,jdbcType=INTEGER},
@@ -167,7 +167,7 @@
 
     <insert id="insertShopCart">
         INSERT INTO shop_cart
-        (user_id, count, cid, commodity_title, comment_picture, color_name, size_name, present_price)
+        (user_id, count, cid, commodity_title, commodity_picture, color_name, size_name, present_price)
         VALUES (#{shopCart.userId},#{shopCart.count},#{shopCart.cid},#{shopCart.commodityTitle},#{shopCart.commentPicture},#{shopCart.colorName},
         #{shopCart.sizeName},#{shopCart.presentPrice}
         )
@@ -188,7 +188,7 @@
     AND status = 1
   </update>
     <select id="selectAllShopCartByUserId" resultMap="BaseResultMap">
-      SELECT cart_id, user_id, count, cid, commodity_title, comment_picture, color_name, size_name, csid, present_price
+      SELECT cart_id, user_id, count, cid, commodity_title, commodity_picture, color_name, size_name, csid, present_price
       FROM shop_cart
       WHERE user_id = #{userId}
       AND status = 1
@@ -197,7 +197,7 @@
   <update id="updateShopCartStatusByShopCartId">
     UPDATE shop_cart SET status = 0
     WHERE cart_id IN
-    <foreach collection="cartId" separator="," open="(" close=")" item="cartId">
+    <foreach close=")" collection="cartId" item="cartId" open="(" separator=",">
         #{cartId}
     </foreach>
   </update>

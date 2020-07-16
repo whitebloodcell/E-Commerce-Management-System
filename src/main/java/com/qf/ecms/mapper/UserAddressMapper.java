@@ -41,4 +41,18 @@ public interface UserAddressMapper {
      * @return
      */
     int updateAddressIsDel(@Param("addressId") int addressId) throws DaoException;
+
+    /**
+     * 根据用户id修改收货地址为非默认
+     * @param userId
+     * @return
+     */
+    int updateAddressUnDefault(@Param("userId") int userId);
+
+    /**
+     * 根据收货地址id修改收货地址为默认
+     * @param addressId 收货地址表主键
+     * @return
+     */
+    int updateAddressDefault (@Param("addressId") int addressId);
 }
