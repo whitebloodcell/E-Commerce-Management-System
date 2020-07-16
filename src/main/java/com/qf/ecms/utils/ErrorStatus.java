@@ -9,8 +9,8 @@ public enum ErrorStatus {
     DATA_ERROR(40005,"data error","数据异常"),
     REGISTER_NAME_ERROR(40003, "register  error","用户名存在"),
     REGISTER_PHONE_ERROR(40003, "register  error","手机号存在"),
-    REGISTER_EMAIL_ERROR(40003, "register  error","邮箱存在");
-
+    REGISTER_EMAIL_ERROR(40003, "register  error","邮箱存在"),
+    DELETE_ERROR(40006,"delete error","删除失败");
     int status;
     String msg;
     String tip;

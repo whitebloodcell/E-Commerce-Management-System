@@ -1,7 +1,8 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.ColorSize;
-import org.apache.ibatis.annotations.Param;
+import com.qf.ecms.domain.entity.ColorSize;import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ColorSizeMapper {
     int deleteByPrimaryKey(Integer csid);
@@ -27,5 +28,12 @@ public interface ColorSizeMapper {
      * @param csid
      * @return
      */
-    int SelectStockByCsid(@Param("csid") int csid);
+    int selectStockByCsid(@Param("csid") int csid);
+
+    /**
+     * 根据商品id查询所有的颜色尺寸信息
+     * @param cid
+     * @return
+     */
+    List<ColorSize> SelectALlColorSizeByCid(@Param("cid") int cid);
 }

@@ -187,4 +187,18 @@
     WHERE cart_id = #{cartId}
     AND status = 1
   </update>
+    <select id="selectAllShopCartByUserId" resultMap="BaseResultMap">
+      SELECT cart_id, user_id, count, cid, commodity_title, comment_picture, color_name, size_name, csid, present_price
+      FROM shop_cart
+      WHERE user_id = #{userId}
+      AND status = 1
+    </select>
+
+  <update id="updateShopCartStatusByShopCartId">
+    UPDATE shop_cart SET status = 0
+    WHERE cart_id IN
+    <foreach collection="cartId" separator="," open="(" close=")" item="cartId">
+        #{cartId}
+    </foreach>
+  </update>
 </mapper>

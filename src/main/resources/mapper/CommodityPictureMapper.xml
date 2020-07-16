@@ -70,14 +70,6 @@
     where pid = #{pid,jdbcType=INTEGER}
   </update>
 
-
-
-
-
-
-
-
-
   <insert id="insertAllCommodity">
     insert into commodity_picture
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -99,4 +91,12 @@
     </trim>
 
   </insert>
+
+
+  <select id="selectAllPicByCid" resultMap="BaseResultMap">
+    SELECT pid, picture_url
+    FROM commodity_picture cp LEFT JOIN commodity c ON cp.cid = c.cid
+    WHERE cp.cid = #{cid}
+    AND c.enable=1
+  </select>
 </mapper>

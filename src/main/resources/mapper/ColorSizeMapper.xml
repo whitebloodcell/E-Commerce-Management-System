@@ -18,7 +18,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select
+    select 
     <include refid="Base_Column_List" />
     from color_size
     where csid = #{csid,jdbcType=INTEGER}
@@ -30,10 +30,10 @@
   </delete>
   <insert id="insert" keyColumn="csid" keyProperty="csid" parameterType="com.qf.ecms.domain.entity.ColorSize" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into color_size (color_name, size_name, stock,
+    insert into color_size (color_name, size_name, stock, 
       original_price, present_price, cid
       )
-    values (#{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER},
+    values (#{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, 
       #{originalPrice,jdbcType=DECIMAL}, #{presentPrice,jdbcType=DECIMAL}, #{cid,jdbcType=INTEGER}
       )
   </insert>
@@ -171,4 +171,12 @@
     </if>
     </trim>
   </insert>
+  <select id="SelectALlColorSizeByCid" resultMap="BaseResultMap">
+    SELECT csid, color_name, size_name, stock, original_price, present_price
+    FROM color_size cs left join commodity c on cs.cid = c.cid
+    WHERE cs.cid = #{cid}
+    AND c.enable=1
+  </select>
+
+
 </mapper>

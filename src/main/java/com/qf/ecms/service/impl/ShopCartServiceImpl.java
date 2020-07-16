@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 购物车业务层
@@ -34,7 +35,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     @Transactional
     public int addShopCar(ShopCart shopCart) throws ServiceException {
         //查看当前商品的库存
-        int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
+        int stock = colorSizeMapper.selectStockByCsid(shopCart.getCsid());
         int row = 0;
         if(stock>=shopCart.getCount()){
             //查询当前商品的购物车记录
@@ -65,7 +66,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     @Override
     public int updateShopCartCount(ShopCart shopCart) throws ServiceException {
         //查看当前商品的库存
-        int stock = colorSizeMapper.SelectStockByCsid(shopCart.getCsid());
+        int stock = colorSizeMapper.selectStockByCsid(shopCart.getCsid());
         //购物车商品要修改的数量
         int count = shopCart.getCount();
         //修改成功数
@@ -77,5 +78,26 @@ public class ShopCartServiceImpl implements ShopCartService {
         }
         return row;
     }
+
+    /**
+     * 查看所有购物车信息
+     * @param userId
+     * @return 购物车列表
+     */
+    @Override
+    public List<ShopCart> findAllCarts(int userId) throws ServiceException{
+        return shopCartMapper.selectAllShopCartByUserId(userId);
+    }
+
+    /**
+     * 批量删除购物车
+     * @param cartIds
+     * @return
+     */
+    @Override
+    public int deleteShopCart(List<Integer> cartIds) {
+        return shopCartMapper.updateShopCartStatusByShopCartId(cartIds);
+    }
+
 
 }

@@ -3,6 +3,8 @@ package com.qf.ecms.mapper;
 import com.qf.ecms.domain.entity.CommodityPicture;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface CommodityPictureMapper {
     int deleteByPrimaryKey(Integer pid);
 
@@ -17,4 +19,11 @@ public interface CommodityPictureMapper {
     int updateByPrimaryKey(CommodityPicture record);
 
     int insertAllCommodity(@Param("commodityPicture") CommodityPicture commodityPicture);
+
+    /**
+     * 根据商品id查看当前所有商品图片
+     * @param cid
+     * @return
+     */
+    List<CommodityPicture> selectAllPicByCid (@Param("cid") int cid);
 }
