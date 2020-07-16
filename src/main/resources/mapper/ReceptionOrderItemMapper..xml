@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.ReceptionOrderItemMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.OrderItem">
+        <id column="order_item_id" jdbcType="INTEGER" property="orderItemId" />
+        <result column="order_id" jdbcType="INTEGER" property="orderId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="commodity_pic" jdbcType="VARCHAR" property="commodityPic" />
+        <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
+        <result column="commodity_price" jdbcType="DECIMAL" property="commodityPrice" />
+        <result column="commodity_quantity" jdbcType="INTEGER" property="commodityQuantity" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+        <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+        <result column="cid" jdbcType="INTEGER" property="cid" />
+    </resultMap>
+
+    <insert id="addOrderItem">
+        insert into order_item (order_id,user_id,commodity_pic,commodity_title,commodity_price,commodity_quantity,color_name,size_name,cid)
+        values
+        <foreach collection="orderItems" item="orderItem" separator="," index="i">
+            (#{orderItem.orderId},#{orderItem.userId},#{orderItem.commodityPic},#{orderItem.commodityTitle},#{orderItem.commodityPrice},#{orderItem.commodityQuantity},#{orderItem.colorName},#{orderItem.sizeName},#{orderItem.cid})
+        </foreach>
+    </insert>
+</mapper>

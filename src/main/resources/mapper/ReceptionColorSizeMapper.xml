@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.ReceptionColorSizeMapper">
+  <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.ColorSize">
+    <id column="csid" jdbcType="INTEGER" property="csid" />
+    <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+    <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="present_price" jdbcType="DECIMAL" property="presentPrice" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+    <update id="updateToStock">
+            update color_size
+            set stock=#{stock},version = #{version}+1
+            where version=#{version}
+    </update>
+  <select id="selectByCsId" resultMap="BaseResultMap">
+
+    select csid, color_name, size_name, stock, present_price, version
+    from color_size
+    where csid = #{csid}
+
+  </select>
+
+
+</mapper>
