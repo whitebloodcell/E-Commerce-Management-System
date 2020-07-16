@@ -33,7 +33,7 @@
         SELECT admin_name,admin_password
         FROM admin
         WHERE admin_name = #{adminName}
-        AND status = 1;
+        AND admin_status = 1;
     </select>
 
     <select id="list" resultMap="BaseResultMap">

@@ -5,6 +5,7 @@ import com.qf.ecms.domain.dto.RoleDto;
 import com.qf.ecms.domain.entity.Admin;
 import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.service.AdminDtoService;
+import com.qf.ecms.utils.ErrorStatus;
 import com.qf.ecms.utils.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +22,12 @@ public class AdminController {
 
     //管理员登录
     @RequestMapping("/login")
-    public String login(String adminName, String adminPassword, Model model, HttpSession session) throws ServiceException {
+    public ResponseEntity<String> login(String adminName, String adminPassword) throws ServiceException {
         AdminDto admin = adminDtoService.selectByName(adminName,adminPassword);
         if(admin == null){
-            model.addAttribute("message","用户名或密码错误！");
-            return "login.html";
+            return ResponseEntity.error();
         }
-        return "redirect:index.html";
+        return ResponseEntity.success("登陆成功！");
 
     }
 
