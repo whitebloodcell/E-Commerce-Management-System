@@ -1,4 +1,4 @@
-package com.qf.ecms.service.Impl;
+package com.qf.ecms.service.impl;
 
 import com.qf.ecms.domain.dto.RegisterDto;
 import com.qf.ecms.domain.dto.UserDto;
