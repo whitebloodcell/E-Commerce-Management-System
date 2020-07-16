@@ -23,14 +23,16 @@ public class ShopCartController {
     @PostMapping("/add")
     public ResponseEntity<Integer> AddShopCart(@RequestBody ShopCart shopCart) {
         ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
-        try{
+        try {
             int row = shopCartService.addShopCar(shopCart);
-            if(row>0){
+            if (row > 0) {
                 responseEntity = responseEntity.success(row);
-            }else {
+            } else {
                 responseEntity = responseEntity.error();
             }
-        }catch (Exception e){
+        } catch (ServiceException e) {
+            return ResponseEntity.error(e.getStatus(), e.getMsg());
+        } catch (Exception e) {
             responseEntity = ResponseEntity.error();
         }
         return responseEntity;
@@ -38,20 +40,23 @@ public class ShopCartController {
 
     /**
      * 修改购物车商品数量
+     *
      * @param shopCart 购物车对象
      * @return
      */
     @PostMapping("/updateCount")
-    public ResponseEntity<Integer> updateCount(@RequestBody ShopCart shopCart) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public ResponseEntity<Integer> updateCount(@RequestBody ShopCart shopCart) {
         ResponseEntity<Integer> responseEntity = new ResponseEntity<>();
-        try{
+        try {
             int row = shopCartService.updateShopCartCount(shopCart);
-            if(row>0){
-                responseEntity = responseEntity.success(row);
-            }else {
+            if (row > 0) {
+                return responseEntity.success(row);
+            } else {
                 responseEntity = responseEntity.error();
             }
-        }catch (Exception e){
+        } catch (ServiceException e) {
+            return ResponseEntity.error(e.getStatus(), e.getMsg());
+        } catch (Exception e) {
             responseEntity = ResponseEntity.error();
         }
         return responseEntity;
