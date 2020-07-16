@@ -3,13 +3,12 @@ package com.qf.ecms.controller;
 import com.qf.ecms.domain.entity.ShopCart;
 import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.service.ShopCartService;
+import com.qf.ecms.utils.ErrorStatus;
 import com.qf.ecms.utils.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 购物车控制层
@@ -57,6 +56,22 @@ public class ShopCartController {
         } catch (ServiceException e) {
             return ResponseEntity.error(e.getStatus(), e.getMsg());
         } catch (Exception e) {
+            responseEntity = ResponseEntity.error();
+        }
+        return responseEntity;
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<ShopCart>> shopCartList (@RequestParam int userId){
+        ResponseEntity<List<ShopCart>> responseEntity = new ResponseEntity<>();
+        try{
+            List<ShopCart> cartList = shopCartService.findAllCarts(userId);
+            if(cartList.size()>0){
+                responseEntity=responseEntity.success(cartList);
+            }else {
+                responseEntity=responseEntity.error(ErrorStatus.DATA_ERROR);
+            }
+        }catch (Exception e){
             responseEntity = ResponseEntity.error();
         }
         return responseEntity;

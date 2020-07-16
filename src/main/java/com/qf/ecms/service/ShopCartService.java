@@ -4,6 +4,8 @@ package com.qf.ecms.service;
 import com.qf.ecms.domain.entity.ShopCart;
 import com.qf.ecms.exception.ServiceException;
 
+import java.util.List;
+
 public interface ShopCartService {
 
     /**
@@ -19,4 +21,11 @@ public interface ShopCartService {
      * @return
      */
     int updateShopCartCount (ShopCart shopCart) throws ServiceException;
+
+    /**
+     * 查看所有购物车信息
+     * @param userId
+     * @return 购物车列表
+     */
+    List<ShopCart> findAllCarts (int userId);
 }

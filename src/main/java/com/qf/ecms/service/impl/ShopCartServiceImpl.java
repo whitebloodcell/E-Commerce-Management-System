@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 购物车业务层
@@ -77,5 +78,16 @@ public class ShopCartServiceImpl implements ShopCartService {
         }
         return row;
     }
+
+    /**
+     * 查看所有购物车信息
+     * @param userId
+     * @return 购物车列表
+     */
+    @Override
+    public List<ShopCart> findAllCarts(int userId) {
+        return shopCartMapper.selectAllShopCartByUserId(userId);
+    }
+
 
 }
