@@ -1,0 +1,89 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.UserDtoMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.backstage.dto.UserDto">
+        <!--@mbg.generated-->
+        <!--@Table `user`-->
+        <id column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+        <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <association property="userItemDto" javaType="com.qf.ecms.domain.entity.backstage.dto.UserItemDto">
+            <id column="user_item_id" jdbcType="INTEGER" property="userItemId"/>
+            <result column="user_id" jdbcType="INTEGER" property="userId"/>
+            <result column="user_item_nickname" jdbcType="VARCHAR" property="userItemNickname"/>
+            <result column="user_item_phone" jdbcType="VARCHAR" property="userItemPhone"/>
+            <result column="user_item_email" jdbcType="VARCHAR" property="userItemEmail"/>
+            <result column="user_item_icon" jdbcType="VARCHAR" property="userItemIcon"/>
+            <result column="update_time" jdbcType="DATE" property="updateTime"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        user_id, user_account, user_password, user_status, create_time
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        select a.user_id, a.user_account, a.user_password, a.user_status, a.create_time,b.user_item_id, b.user_id, b.user_item_nickname, b.user_item_phone, b.user_item_email, b.user_item_icon,
+        b.update_time
+        from `user` a
+        LEFT JOIN user_item b ON a.user_id = b.user_id
+        limit #{limit},#{size}
+    </select>
+    <select id="selectByNameOrTime" resultMap="BaseResultMap">
+        select a.user_id, a.user_account, a.user_password, a.user_status, a.create_time,b.user_item_id, b.user_id, b.user_item_nickname, b.user_item_phone, b.user_item_email, b.user_item_icon,
+        b.update_time
+        from `user` a
+        LEFT JOIN user_item b ON a.user_id = b.user_id
+        WHERE user_item_nickname like CONCAT('%',#{userItemNickname},'%')
+        OR create_time BETWEEN CONCAT(#{createTime},' 00:00:00') AND CONCAT(#{createTime},' 23:59:59')
+        limit #{limit},#{size}
+    </select>
+
+    <update id="delete">
+        UPDATE `user`
+        SET user_status = 0
+        WHERE user_id = #{userId}
+        AND user_status = 1
+    </update>
+
+    <update id="deleteBatch">
+        UPDATE `user`
+        SET user_status = 0
+        WHERE user_id IN
+        <foreach collection="ids" separator="," open="(" close=")"  item="id" >
+            #{id}
+        </foreach>
+        AND user_status = 1
+    </update>
+    <update id="active">
+        UPDATE `user`
+        SET user_status = 1
+        WHERE user_id = #{userId}
+        AND user_status = 0
+    </update>
+
+    <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="UserDto" useGeneratedKeys="true">
+        INSERT INTO
+        `user` (user_account, user_password, user_status)
+        VALUES (#{userDto.userAccount,jdbcType=VARCHAR}, #{userDto.userPassword,jdbcType=VARCHAR}, #{userDto.userStatus,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="UserDto">
+        <!--@mbg.generated-->
+        update `user`
+        <set>
+            <if test="userDto.userAccount != null">
+                user_account = #{userDto.userAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="userDto.userPassword != null">
+                user_password = #{userDto.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userDto.userStatus != null">
+                user_status = #{userDto.userStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_id = #{userDto.userId,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,10 +1,11 @@
-package com.qf.ecms.domain.entity;
+package com.qf.ecms.domain.entity.backstage.dto;
 
-import java.util.Date;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class UserItem {
+public class UserItemDto {
     /**
      * 用户详情id
      */
@@ -21,7 +22,7 @@ public class UserItem {
     private String userItemNickname;
 
     /**
-     * 用户手机号
+     * 手机号
      */
     private String userItemPhone;
 

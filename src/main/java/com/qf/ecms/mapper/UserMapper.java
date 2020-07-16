@@ -17,9 +17,10 @@ public interface UserMapper {
 
     /**
      * 根据用户id修改密码
+     *
      * @param userId
      * @param password
      * @return
      */
-    int updatePassword(@Param("userId") int userId,@Param("password") String password);
+    int updatePassword(@Param("userId") int userId, @Param("password") String password);
 }

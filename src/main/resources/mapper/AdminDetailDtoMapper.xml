@@ -1,0 +1,23 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.AdminDetailDtoMapper">
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.AdminDetailDto">
+        <id column="admin_detail_id" jdbcType="INTEGER" property="adminDetailId" />
+        <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+        <result column="sex" jdbcType="INTEGER" property="sex" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="qq" jdbcType="VARCHAR" property="qq" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        admin_detail_id, admin_id, sex, age, phone, email, qq, update_time
+    </sql>
+    <insert id="insert" parameterType="com.qf.ecms.domain.dto.AdminDetailDto">
+        insert into admin_detail(admin_id, sex, age,phone,email, qq)
+        values (#{adminDetailDto.adminId}, #{adminDetailDto.sex}, #{adminDetailDto.age}, #{adminDetailDto.phone}, #{adminDetailDto.email}, #{adminDetailDto.qq})
+    </insert>
+
+</mapper>
