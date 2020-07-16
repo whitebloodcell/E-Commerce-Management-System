@@ -2,6 +2,7 @@ package com.qf.ecms.domain.entity;
 
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
     * 商品详细信息表
@@ -31,6 +32,7 @@ public class CommodityDetail {
     /**
     * 上架时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
     /**

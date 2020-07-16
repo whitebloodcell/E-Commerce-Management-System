@@ -104,4 +104,44 @@
       cid = #{cid,jdbcType=INTEGER}
     where cdid = #{cdid,jdbcType=INTEGER}
   </update>
+
+
+
+
+  <insert id="insertAllCommodity" keyProperty="commodityDetail.cdid" useGeneratedKeys="true">
+    insert into
+    commodity_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commodityDetail.detailsContent != null and commodityDetail.detailsContent != ''">
+        details_content,
+      </if>
+      <if test="param1.model != null and param1.model != ''">
+        model,
+      </if>
+      <if test="commodityDetail.weight != null">
+        weight,
+      </if>
+      <if test="commodityDetail.cid != null">
+        cid
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commodityDetail.detailsContent != null and commodityDetail.detailsContent != ''">
+        #{commodityDetail.detailsContent},
+      </if>
+      <if test="param1.model != null and param1.model != ''">
+        #{commodityDetail.model},
+      </if>
+      <if test="commodityDetail.weight != null">
+        #{commodityDetail.weight},
+      </if>
+      <if test="commodityDetail.cid != null">
+        #{commodityDetail.cid}
+      </if>
+    </trim>
+
+  </insert>
+
+
 </mapper>
