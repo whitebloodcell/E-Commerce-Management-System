@@ -3,8 +3,10 @@ package com.qf.ecms.controller;
 import com.qf.ecms.domain.dto.CommodityDto;
 import com.qf.ecms.service.CommodityDtoService;
 import com.qf.ecms.utils.ErrorStatus;
+
 import com.qf.ecms.utils.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -17,12 +19,12 @@ public class CommodityDtoController {
     CommodityDtoService commodityDtoService;
 
     @PostMapping("/commoditySelect")
-    public ResponseEntity<List<CommodityDto>> commoditySelect(int cid, String title, Date time, int limit, int offset){
-        List<CommodityDto> list = commodityDtoService.query(cid, title, time, limit, offset);
+    public ResponseEntity<List<CommodityDto>> commoditySelect(@RequestBody CommodityDto commodityDto){
+        List<CommodityDto> list = commodityDtoService.query(commodityDto);
         if (list != null){
-            return ResponseEntity.success(ErrorStatus.SUCCESS,list);
+            return ResponseEntity.success(list);
         }else {
-            return ResponseEntity.error(ErrorStatus.SERVICE_ERROR);
+            return ResponseEntity.error();
         }
     }
 

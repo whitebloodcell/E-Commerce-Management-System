@@ -20,15 +20,15 @@ public class CommodityDtoServiceImpl implements CommodityDtoService {
 
     //这是搜索,需要模糊查询,所有cid和title是传入同一个数据,还有时间点(time),还有分页
     @Override
-    public List<CommodityDto> query(int cid, String title, Date time, int limit, int offset) {
+    public List<CommodityDto> query(CommodityDto commodityDto) {
 
-        List<CommodityDto> commodityDto = commodityDtoMapper.selectAll(cid, title, time, limit, offset);
+        List<CommodityDto> list = commodityDtoMapper.selectAllCommodityDto(commodityDto);
 
-        if (commodityDto == null){
+        if (list == null){
             throw new DaoException(ErrorStatus.DAO_ERROR);
         }
 
-        return commodityDto;
+        return list;
 
     }
 }

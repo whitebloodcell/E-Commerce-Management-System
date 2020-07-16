@@ -2,31 +2,74 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.ecms.mapper.CommodityDtoMapper">
 
-    <resultMap id="AllBaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">
-        <collection property="colorAndSize.stock" column="stock"/>
-        <collection property="colorAndSize.originalPrice" column="original_price"/>
-        <collection property="colorAndSize.presentPrice" column="present_price"/>
+<!--    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">-->
+<!--        <association property="commodity.cid" column="cid"/>-->
+<!--        <association property="commodity.commodityTitle" column="commodity_title"/>-->
+<!--        <association property="commodity.enable" column="enable"/>-->
+<!--        <association property="colorSize.stock" column="stock"/>-->
+<!--        <association property="colorSize.originalPrice" column="original_price"/>-->
+<!--        <association property="colorSize.presentPrice" column="present_price"/>-->
+<!--        <association property="commodityDetail.createTime" column="create_time"/>-->
 
-        <collection property="commodity.cid" column="cid"/>
-        <collection property="commodity.commodityTitle" column="commodity_tittle"/>
-        <collection property="commodity.enable" column="enable"/>
+<!--    </resultMap>-->
+<!--    类型转换错误,不在同一个实体类下-->
+<!--    <resultMap id="AllBaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">-->
+<!--        <collection property="colorSize.stock" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="colorSize.originalPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="colorSize.presentPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="commodity.cid" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="commodity.commodityTitle" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="commodity.enable" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="commodityDetail.createTime" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
 
 
-        <collection property="commodityDetail.createTime" column="create_time"/>
+<!--查出返回全部的字段-->
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">
+        <association property="colorSize" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>
+        <association property="commodity" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>
+        <association property="commodityDetail" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>
     </resultMap>
-    <select id="selectAll" resultType="com.qf.ecms.domain.dto.CommodityDto" resultMap="AllBaseResultMap">
-        select c.cid,c.commodity_tittle,c.enable,s.stock,s.original_price,s.present_price,d.create_time
+
+<!--    在dto里面放字段与CommodityDto.colorSize.stock 一样   AllBaseResultMap-->
+<!--    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.CommodityDto">-->
+<!--        <collection property="cid" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="commodityTitle" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="enable" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <collection property="stock" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="originalPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="presentPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <collection property="createTime" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="CommodityBaseResultMap" type="com.qf.ecms.domain.entity.Commodity">-->
+<!--        <association property="cid" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <association property="commodityTitle" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--        <association property="enable" resultMap="com.qf.ecms.mapper.CommodityMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+<!--    <resultMap id="ColorSizeBaseResultMap" type="com.qf.ecms.domain.entity.ColorSize" extends="CommodityBaseResultMap">-->
+<!--        <association property="stock" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <association property="presentPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--        <association property="originalPrice" resultMap="com.qf.ecms.mapper.ColorSizeMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+<!--    <resultMap id="CommodityDetailBaseResultMap" type="com.qf.ecms.domain.entity.CommodityDetail" extends="ColorSizeBaseResultMap">-->
+<!--        <association property="createTime" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>-->
+<!--    </resultMap>-->
+
+
+    <select id="selectAllCommodityDto" resultMap="BaseResultMap">
+        select c.cid,c.commodity_title,c.enable,s.stock,s.original_price,s.present_price,d.create_time
         from (commodity c left join color_size s on c.cid = s.cid) left join commodity_detail d on d.cid = c.cid
         <trim prefix="where" prefixOverrides="and">
-            <if test="cidOrTitle != null ">
-                and (c.cid like concat('%',#{cidOrTitle},'%') or c.commodity_tittle like concat('%',#{cidOrTitle},'%'))
+            <if test="commodityDto.keyword != null and commodityDto.keyword != ''">
+                and (c.cid like concat('%',#{commodityDto.keyword},'%') or c.commodity_title like concat('%',#{commodityDto.keyword},'%'))
             </if>
 
-            <if test="time != null ">
-                and d.create_time like concat('%',#{time},'%')
+            <if test="commodityDto.time != null and commodityDto.time != ''">
+                and d.create_time like concat('%',#{commodityDto.time},'%')
             </if>
         </trim>
-        limit #{limit},#{offset}
+        limit #{commodityDto.limit},#{commodityDto.offset}
     </select>
 
 
