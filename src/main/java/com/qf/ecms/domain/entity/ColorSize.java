@@ -1,5 +1,6 @@
 package com.qf.ecms.domain.entity;
 
+import java.math.BigDecimal;
 import lombok.Data;
 
 /**
@@ -30,15 +31,20 @@ public class ColorSize {
     /**
      * 商品原价
      */
-    private Long originalPrice;
+    private BigDecimal originalPrice;
 
     /**
      * 现价
      */
-    private Long presentPrice;
+    private BigDecimal presentPrice;
 
     /**
      * 商品id
      */
     private Integer cid;
+
+    /**
+     * 版本号
+     */
+    private Integer version;
 }

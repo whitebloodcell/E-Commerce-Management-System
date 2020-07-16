@@ -1,5 +1,6 @@
 package com.qf.ecms.domain.entity;
 
+import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
@@ -32,7 +33,7 @@ public class OrderItem {
     /**
      * 商品价格
      */
-    private Long commodityPrice;
+    private BigDecimal commodityPrice;
 
     /**
      * 购买数量
@@ -53,4 +54,9 @@ public class OrderItem {
      * 尺码
      */
     private String sizeName;
+
+    /**
+     * 商品id
+     */
+    private Integer cid;
 }

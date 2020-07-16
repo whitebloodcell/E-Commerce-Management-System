@@ -3,7 +3,6 @@ package com.qf.ecms.controller;
 import com.qf.ecms.domain.dto.RegisterDto;
 import com.qf.ecms.domain.dto.UserDto;
 import com.qf.ecms.exception.DaoException;
-import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.service.ReceptionLogInToRegisterService;
 import com.qf.ecms.utils.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
