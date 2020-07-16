@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.qf.ecms.domain.entity.ColorSize">
     <!--@mbg.generated-->
     <!--@Table color_size-->
-    <id column="csid"  property="csid" />
-    <result column="color_name"  property="colorName" />
-    <result column="size_name"  property="sizeName" />
-    <result column="stock"  property="stock" />
-    <result column="original_price"  property="originalPrice" />
-    <result column="present_price"  property="presentPrice" />
-    <result column="cid"  property="cid" />
+    <id column="csid" jdbcType="INTEGER" property="csid" />
+    <result column="color_name" jdbcType="VARCHAR" property="colorName" />
+    <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="present_price" jdbcType="DECIMAL" property="presentPrice" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -18,7 +18,7 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from color_size
     where csid = #{csid,jdbcType=INTEGER}
@@ -30,10 +30,10 @@
   </delete>
   <insert id="insert" keyColumn="csid" keyProperty="csid" parameterType="com.qf.ecms.domain.entity.ColorSize" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into color_size (color_name, size_name, stock, 
+    insert into color_size (color_name, size_name, stock,
       original_price, present_price, cid
       )
-    values (#{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, 
+    values (#{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER},
       #{originalPrice,jdbcType=DECIMAL}, #{presentPrice,jdbcType=DECIMAL}, #{cid,jdbcType=INTEGER}
       )
   </insert>
@@ -117,6 +117,13 @@
       cid = #{cid,jdbcType=INTEGER}
     where csid = #{csid,jdbcType=INTEGER}
   </update>
+
+    <select id="SelectStockByCsid" resultType="Integer">
+        SELECT cs.stock
+        FROM color_size cs LEFT JOIN commodity c ON cs.cid = c.cid
+        WHERE csid = #{csid}
+        AND c.enable = 0
+    </select>
 
 
   <insert id="insertAllCommodity" keyProperty="colorSize.csid" useGeneratedKeys="true">

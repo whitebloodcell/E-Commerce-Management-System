@@ -1,18 +1,17 @@
-package com.qf.ecms.service.Impl;
+package com.qf.ecms.service.impl;
 
 import com.qf.ecms.domain.dto.RegisterDto;
 import com.qf.ecms.domain.dto.UserDto;
 import com.qf.ecms.domain.entity.User;
 import com.qf.ecms.domain.entity.UserItem;
 import com.qf.ecms.exception.DaoException;
-import com.qf.ecms.exception.ServiceException;
 import com.qf.ecms.mapper.ReceptionUserItemMapper;
 import com.qf.ecms.mapper.ReceptionUserMapper;
 import com.qf.ecms.service.ReceptionLogInToRegisterService;
 import com.qf.ecms.utils.ErrorStatus;
+import com.qf.ecms.utils.TestReg;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 
 @Service
@@ -22,6 +21,7 @@ public class ReceptionLogInToRegisterServiceImpl implements ReceptionLogInToRegi
     ReceptionUserMapper receptionUserMapper;
     @Resource
     ReceptionUserItemMapper receptionUserItemMapper;
+
 
 
 
@@ -59,7 +59,7 @@ public class ReceptionLogInToRegisterServiceImpl implements ReceptionLogInToRegi
     @Override
     @Transactional
     public int Register(RegisterDto registerDto) {
-
+        TestReg testReg = new TestReg();
         //user对象
         User user = registerDto.getUser();
         //用户账号
@@ -74,7 +74,16 @@ public class ReceptionLogInToRegisterServiceImpl implements ReceptionLogInToRegi
            throw new DaoException(ErrorStatus.REGISTER_NAME_ERROR);
         }
 
-        //判断手机号是否存在
+
+        boolean i = !testReg.testTel(userItemPhone);
+        boolean e = !testReg.testEmail(userItemEmail);
+
+
+        //判断手机跟邮箱的格式是否正确
+        if(!testReg.testTel(userItemPhone) || !testReg.testEmail(userItemEmail) ){
+            throw new DaoException(ErrorStatus.DAO_ERROR);
+        }
+        //判断手机号是否正确与存在
         UserItem phone = receptionUserItemMapper.selectByPhone(userItemPhone);
         if (phone!=null){
             throw new DaoException(ErrorStatus.REGISTER_PHONE_ERROR);
