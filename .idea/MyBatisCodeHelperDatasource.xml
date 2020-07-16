@@ -27,6 +27,28 @@
         </option>
         <option name="tableGenerateConfigs">
           <map>
+            <entry key="ecmsdb:admin">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="admin_id" />
+                  <option name="javaModelName" value="Admin" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="ecmsdb:admin_detail">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="admin_detail_id" />
+                  <option name="javaModelName" value="AdminDetail" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="ecmsdb:color_size">
               <value>
                 <TableGenerateConfig>
@@ -56,6 +78,40 @@
                 <TableGenerateConfig>
                   <option name="generatedKey" value="cdid" />
                   <option name="javaModelName" value="CommodityDetail" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="ecmsdb:jurisdiction">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="jurisdiction_id" />
+                  <option name="javaModelName" value="Jurisdiction" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="ecmsdb:menu">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="menu_id" />
+                  <option name="javaModelName" value="Menu" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="ecmsdb:role">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="role_id" />
+                  <option name="javaModelName" value="Role" />
                   <option name="moduleName" value="E-Commerce-Management-System" />
                   <option name="sequenceColumn" value="" />
                   <option name="sequenceId" value="" />

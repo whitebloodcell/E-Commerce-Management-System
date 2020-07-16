@@ -5,4 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UserItemDtoMapper {
     int insert(@Param("userItemDto") UserItemDto userItemDto);
+
+    int updateUserItemById(@Param("userItemDto") UserItemDto userItemDto);
 }

@@ -24,17 +24,17 @@ public class UserDtoServiceImpl implements UserDtoService {
     UserItemDtoMapper userItemDtoMapper;
 
     @Override
-    public List<User> list(int page, int size) {
+    public List<UserDto> list(int page, int size) {
         int limit = (page - 1) * size;
-        List<User> users = new ArrayList<>();
+        List<UserDto> users = new ArrayList<>();
         users = userDtoMapper.list(limit,size);
         return users;
     }
 
     @Override
-    public List<User> selectByNameOrTime(String userItemNickname, String createTime,int page,int size) {
+    public List<UserDto> selectByNameOrTime(String userItemNickname, String createTime,int page,int size) {
         int limit = (page - 1) * size;
-        List<User> users = new ArrayList<>();
+        List<UserDto> users = new ArrayList<>();
         users = userDtoMapper.selectByNameOrTime(userItemNickname,createTime,limit,size);
         return users;
     }
@@ -74,9 +74,15 @@ public class UserDtoServiceImpl implements UserDtoService {
     }
 
     @Override
-    public int updateByPrimaryKey(UserDto userDto) {
+    @Transactional
+    public int updateById(UserDto userDto) {
         int count = 0 ;
         count = userDtoMapper.updateByPrimaryKeySelective(userDto);
-        return count;
+        UserItemDto userItemDto = new UserItemDto();
+        userItemDto = userDto.getUserItemDto();
+        userItemDto.setUserId(userDto.getUserId());
+        int count2 = 0;
+        count2 = userItemDtoMapper.updateUserItemById(userItemDto);
+        return count2;
     }
 }

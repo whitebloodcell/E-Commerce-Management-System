@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserDtoService {
     //分页显示所有会员信息
-    List<User> list(int page, int size);
+    List<UserDto> list(int page, int size);
 
     //根据用户名或者创建时间查询会员信息
-    List<User> selectByNameOrTime(String userItemNickname, String  createTime, int page, int size);
+    List<UserDto> selectByNameOrTime(String userItemNickname, String  createTime, int page, int size);
 
     //删除用户
     int delete(int userId);
@@ -25,7 +25,7 @@ public interface UserDtoService {
     int insert(UserDto userDto);
 
     //修改用户信息
-    int updateByPrimaryKey(UserDto userDto);
+    int updateById(UserDto userDto);
 
 
 }
