@@ -83,15 +83,15 @@ public class UserController {
 
     //显示所有会员
     @GetMapping("/list")
-    public ResponseEntity<List<User>> list(int page, int size) throws ServiceException {
-        List<User> users = userDtoService.list(page, size);
+    public ResponseEntity<List<UserDto>> list(int page, int size) throws ServiceException {
+        List<UserDto> users = userDtoService.list(page, size);
         return ResponseEntity.success(users);
     }
 
     //查询会员
     @GetMapping("/select")
-    public ResponseEntity<List<User>> selectByNameOrTime(String userItemNickname, String createTime,int page,int size) throws ServiceException{
-        List<User> users = userDtoService.selectByNameOrTime(userItemNickname,createTime,page,size);
+    public ResponseEntity<List<UserDto>> selectByNameOrTime(String userItemNickname, String createTime,int page,int size) throws ServiceException{
+        List<UserDto> users = userDtoService.selectByNameOrTime(userItemNickname,createTime,page,size);
         return ResponseEntity.success(users);
     }
 
@@ -128,7 +128,7 @@ public class UserController {
     //修改会员信息
     @PutMapping("/update")
     public ResponseEntity<Integer> updateByPrimaryKey(UserDto userDto) throws ServiceException{
-        int count = userDtoService.updateByPrimaryKey(userDto);
+        int count = userDtoService.updateById(userDto);
         return ResponseEntity.success(count);
 
     }
