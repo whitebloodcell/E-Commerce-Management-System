@@ -168,7 +168,7 @@
     <insert id="insertShopCart">
         INSERT INTO shop_cart
         (user_id, count, cid, commodity_title, commodity_picture, color_name, size_name, present_price)
-        VALUES (#{shopCart.userId},#{shopCart.count},#{shopCart.cid},#{shopCart.commodityTitle},#{shopCart.commentPicture},#{shopCart.colorName},
+        VALUES (#{shopCart.userId},#{shopCart.count},#{shopCart.cid},#{shopCart.commodityTitle},#{shopCart.commodityPicture},#{shopCart.colorName},
         #{shopCart.sizeName},#{shopCart.presentPrice}
         )
     </insert>

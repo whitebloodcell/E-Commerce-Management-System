@@ -23,9 +23,9 @@
     </sql>
     <insert id="insertAddress">
         INSERT INTO user_address
-        (name, province, city, district, street, address_detail, phone, user_id)
+        (name, province, city, district, street, address_detail, phone, user_id ,is_default)
         VALUES (#{userAddress.name}, #{userAddress.province},#{userAddress.city}, #{userAddress.district}, #{userAddress.street},
-                #{userAddress.addressDetail}, #{userAddress.phone},#{userAddress.userId})
+                #{userAddress.addressDetail}, #{userAddress.phone},#{userAddress.userId},#{userAddress.isDefault})
     </insert>
     <select id="selectAddressCount" resultType="java.lang.Integer">
         SELECT count(*)

@@ -129,13 +129,6 @@
     where csid = #{csid,jdbcType=INTEGER}
   </update>
 
-    <select id="SelectStockByCsid" resultType="Integer">
-        SELECT cs.stock
-        FROM color_size cs LEFT JOIN commodity c ON cs.cid = c.cid
-        WHERE csid = #{csid}
-        AND c.enable = 0
-    </select>
-
 
 
 <!-- 自写lsd -->
@@ -211,6 +204,13 @@
     FROM color_size cs left join commodity c on cs.cid = c.cid
     WHERE cs.cid = #{cid}
     AND c.enable=1
+  </select>
+
+  <select id="selectStockByCsid" resultType="Integer">
+    SELECT cs.stock
+    FROM color_size cs LEFT JOIN commodity c ON cs.cid = c.cid
+    WHERE csid = #{csid}
+    AND c.enable = 1
   </select>
 
 
