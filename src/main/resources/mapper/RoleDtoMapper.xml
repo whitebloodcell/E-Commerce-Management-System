@@ -30,4 +30,16 @@
         INSERT INTO role(role_name, description)
         VALUES (#{roleDto.roleName},#{roleDto.description})
     </insert>
+    <update id="update" parameterType="com.qf.ecms.domain.dto.RoleDto" >
+        update `role`
+        <set>
+            <if test="roleDto.roleName != null">
+                role_name = #{roleDto.roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDto.description != null">
+                description = #{roleDto.description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where role_id = #{roleDto.roleId,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -6,4 +6,7 @@ import org.apache.ibatis.annotations.Param;
 public interface RoleDtoMapper {
     //添加角色（权限名称）
     int insert(@Param("roleDto") RoleDto roleDto);
+
+    //修改角色（权限名称）
+    int update(@Param("roleDto") RoleDto roleDto);
 }

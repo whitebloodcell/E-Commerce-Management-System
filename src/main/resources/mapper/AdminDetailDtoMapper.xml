@@ -19,5 +19,26 @@
         insert into admin_detail(admin_id, sex, age,phone,email, qq)
         values (#{adminDetailDto.adminId}, #{adminDetailDto.sex}, #{adminDetailDto.age}, #{adminDetailDto.phone}, #{adminDetailDto.email}, #{adminDetailDto.qq})
     </insert>
+    <update id="update" parameterType="com.qf.ecms.domain.dto.AdminDetailDto">
+        UPDATE admin_detail
+        <set>
+            <if test="adminDetailDto.sex != null">
+                sex = #{adminDetailDto.sex,jdbcType=INTEGER},
+            </if>
+            <if test="adminDetailDto.age != null">
+                age = #{adminDetailDto.age,jdbcType=INTEGER},
+            </if>
+            <if test="adminDetailDto.phone != null">
+                phone = #{adminDetailDto.phone,jdbcType=VARCHAR},
+            </if>
+            <if test="adminDetailDto.email != null">
+                email = #{adminDetailDto.email,jdbcType=VARCHAR},
+            </if>
+            <if test="adminDetailDto.qq != null">
+                qq = #{adminDetailDto.qq,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where admin_detail_id = #{adminDetailDto.adminDetailId,jdbcType=INTEGER}
+    </update>
 
 </mapper>
