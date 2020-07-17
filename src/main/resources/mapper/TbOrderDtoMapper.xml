@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.ecms.mapper.TbOrderDtoMapper">
+    
+    <resultMap id="TbOrderBaseResultMap" type="com.qf.ecms.domain.entity.TbOrder">
+        <association property="orderNo" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="total" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="createDate" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="status" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+    </resultMap>
+
+    <resultMap id="OrderItemBaseResultMap" type="com.qf.ecms.domain.entity.OrderItem" extends="TbOrderBaseResultMap">
+        <association property="commodityTitle" resultMap="com.qf.ecms.mapper.OrderItemMapper.BaseResultMap"/>
+        <association property="commodityQuantity" resultMap="com.qf.ecms.mapper.OrderItemMapper.BaseResultMap"/>
+    </resultMap>
+
+    <resultMap id="SecondarySortBaseResultMap" type="com.qf.ecms.domain.entity.SecondarySort" extends="OrderItemBaseResultMap">
+        <association property="sortName" resultMap="com.qf.ecms.mapper.SecondarySortMapper.BaseResultMap"/>
+    </resultMap>
+
+
+    <resultMap id="BaseResultMap" type="com.qf.ecms.domain.dto.TbOrderDto">
+        <association property="orderNo" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="total" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="createDate" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="status" resultMap="com.qf.ecms.mapper.TbOrderMapper.BaseResultMap"/>
+        <association property="commodityTitle" resultMap="com.qf.ecms.mapper.OrderItemMapper.BaseResultMap"/>
+        <association property="commodityQuantity" resultMap="com.qf.ecms.mapper.OrderItemMapper.BaseResultMap"/>
+        <association property="sortName" resultMap="com.qf.ecms.mapper.SecondarySortMapper.BaseResultMap"/>
+    </resultMap>
+
+
+    <select id="selectAll"  resultMap="BaseResultMap">
+        select o.order_no,o.total,o.create_date,o.status,oi.commodity_title,oi.commodity_quantity,s.sort_name
+        from (((tb_order o left join order_item oi on o.order_id = oi.order_id)
+                 left join commodity c on c.cid = oi.cid)
+                    left join secondary_sort s on s.ssid = c.ssid)
+    </select>
+</mapper>
