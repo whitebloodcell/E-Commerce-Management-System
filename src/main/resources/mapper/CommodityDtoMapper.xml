@@ -56,7 +56,7 @@
 <!--        <association property="createTime" resultMap="com.qf.ecms.mapper.CommodityDetailMapper.BaseResultMap"/>-->
 <!--    </resultMap>-->
 
-
+    <!-- 自写lsd -->
     <select id="selectAllCommodityDto" resultMap="BaseResultMap">
         select c.cid,c.commodity_title,c.enable,s.stock,s.original_price,s.present_price,d.create_time
         from (commodity c left join color_size s on c.cid = s.cid) left join commodity_detail d on d.cid = c.cid
