@@ -5,7 +5,6 @@
     <!--@mbg.generated-->
     <!--@Table order_item-->
     <id column="order_item_id" jdbcType="INTEGER" property="orderItemId" />
-    <result column="cid" jdbcType="INTEGER" property="cid" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="commodity_pic" jdbcType="VARCHAR" property="commodityPic" />
@@ -15,11 +14,12 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="color_name" jdbcType="VARCHAR" property="colorName" />
     <result column="size_name" jdbcType="VARCHAR" property="sizeName" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    order_item_id, cid, order_id, user_id, commodity_pic, commodity_title, commodity_price, 
-    commodity_quantity, `status`, color_name, size_name
+    order_item_id, order_id, user_id, commodity_pic, commodity_title, commodity_price, 
+    commodity_quantity, `status`, color_name, size_name, cid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -35,22 +35,19 @@
   </delete>
   <insert id="insert" keyColumn="order_item_id" keyProperty="orderItemId" parameterType="com.qf.ecms.domain.entity.OrderItem" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into order_item (cid, order_id, user_id, 
-      commodity_pic, commodity_title, commodity_price, 
-      commodity_quantity, `status`, color_name, 
-      size_name)
-    values (#{cid,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{commodityPic,jdbcType=VARCHAR}, #{commodityTitle,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, 
-      #{commodityQuantity,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{colorName,jdbcType=VARCHAR}, 
-      #{sizeName,jdbcType=VARCHAR})
+    insert into order_item (order_id, user_id, commodity_pic, 
+      commodity_title, commodity_price, commodity_quantity, 
+      `status`, color_name, size_name, 
+      cid)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{commodityPic,jdbcType=VARCHAR}, 
+      #{commodityTitle,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, #{commodityQuantity,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, 
+      #{cid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="order_item_id" keyProperty="orderItemId" parameterType="com.qf.ecms.domain.entity.OrderItem" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cid != null">
-        cid,
-      </if>
       <if test="orderId != null">
         order_id,
       </if>
@@ -78,11 +75,11 @@
       <if test="sizeName != null">
         size_name,
       </if>
+      <if test="cid != null">
+        cid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cid != null">
-        #{cid,jdbcType=INTEGER},
-      </if>
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
       </if>
@@ -110,15 +107,15 @@
       <if test="sizeName != null">
         #{sizeName,jdbcType=VARCHAR},
       </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.OrderItem">
     <!--@mbg.generated-->
     update order_item
     <set>
-      <if test="cid != null">
-        cid = #{cid,jdbcType=INTEGER},
-      </if>
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=INTEGER},
       </if>
@@ -146,14 +143,16 @@
       <if test="sizeName != null">
         size_name = #{sizeName,jdbcType=VARCHAR},
       </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
     </set>
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.OrderItem">
     <!--@mbg.generated-->
     update order_item
-    set cid = #{cid,jdbcType=INTEGER},
-      order_id = #{orderId,jdbcType=INTEGER},
+    set order_id = #{orderId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       commodity_pic = #{commodityPic,jdbcType=VARCHAR},
       commodity_title = #{commodityTitle,jdbcType=VARCHAR},
@@ -161,7 +160,8 @@
       commodity_quantity = #{commodityQuantity,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
       color_name = #{colorName,jdbcType=VARCHAR},
-      size_name = #{sizeName,jdbcType=VARCHAR}
+      size_name = #{sizeName,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER}
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </update>
 </mapper>

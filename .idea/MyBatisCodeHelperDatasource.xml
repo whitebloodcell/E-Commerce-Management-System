@@ -119,6 +119,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="ecmsdb:order_item">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="order_item_id" />
+                  <option name="javaModelName" value="OrderItem" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="ecmsdb:role">
               <value>
                 <TableGenerateConfig>
