@@ -1,7 +1,6 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.Commodity;
-import org.apache.ibatis.annotations.Param;
+import com.qf.ecms.domain.entity.Commodity;import org.apache.ibatis.annotations.Param;
 
 public interface CommodityMapper {
     int deleteByPrimaryKey(Integer cid);
@@ -17,5 +16,4 @@ public interface CommodityMapper {
     int updateByPrimaryKey(Commodity record);
 
     int insertAllCommodity(@Param("commodity") Commodity commodity);
-
 }

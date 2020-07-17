@@ -85,6 +85,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="ecmsdb:commodity_picture">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="pid" />
+                  <option name="javaModelName" value="CommodityPicture" />
+                  <option name="moduleName" value="E-Commerce-Management-System" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="ecmsdb:jurisdiction">
               <value>
                 <TableGenerateConfig>

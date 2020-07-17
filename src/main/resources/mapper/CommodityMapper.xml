@@ -6,15 +6,15 @@
     <!--@Table commodity-->
     <id column="cid" jdbcType="INTEGER" property="cid" />
     <result column="commodity_title" jdbcType="VARCHAR" property="commodityTitle" />
+    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
     <result column="ssid" jdbcType="INTEGER" property="ssid" />
     <result column="psid" jdbcType="INTEGER" property="psid" />
     <result column="is_new" jdbcType="INTEGER" property="isNew" />
     <result column="enable" jdbcType="INTEGER" property="enable" />
-    <result column="commodity_picture" jdbcType="VARCHAR" property="commodityPicture" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    cid, commodity_title, ssid, `psid`, is_new, `enable`, commodity_picture
+    cid, commodity_title, commodity_picture, ssid, `psid`, is_new, `enable`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -30,12 +30,12 @@
   </delete>
   <insert id="insert" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into commodity (commodity_title, ssid, `psid`, 
-      is_new, `enable`, commodity_picture
-      )
-    values (#{commodityTitle,jdbcType=VARCHAR}, #{ssid,jdbcType=INTEGER}, #{psid,jdbcType=INTEGER}, 
-      #{isNew,jdbcType=INTEGER}, #{enable,jdbcType=INTEGER}, #{commodityPicture,jdbcType=VARCHAR}
-      )
+    insert into commodity (commodity_title, commodity_picture, 
+      ssid, `psid`, is_new, 
+      `enable`)
+    values (#{commodityTitle,jdbcType=VARCHAR}, #{commodityPicture,jdbcType=VARCHAR}, 
+      #{ssid,jdbcType=INTEGER}, #{psid,jdbcType=INTEGER}, #{isNew,jdbcType=INTEGER}, 
+      #{enable,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="cid" keyProperty="cid" parameterType="com.qf.ecms.domain.entity.Commodity" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -43,6 +43,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="commodityTitle != null">
         commodity_title,
+      </if>
+      <if test="commodityPicture != null">
+        commodity_picture,
       </if>
       <if test="ssid != null">
         ssid,
@@ -56,13 +59,13 @@
       <if test="enable != null">
         `enable`,
       </if>
-      <if test="commodityPicture != null">
-        commodity_picture,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="commodityTitle != null">
         #{commodityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPicture != null">
+        #{commodityPicture,jdbcType=VARCHAR},
       </if>
       <if test="ssid != null">
         #{ssid,jdbcType=INTEGER},
@@ -76,9 +79,6 @@
       <if test="enable != null">
         #{enable,jdbcType=INTEGER},
       </if>
-      <if test="commodityPicture != null">
-        #{commodityPicture,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.Commodity">
@@ -87,6 +87,9 @@
     <set>
       <if test="commodityTitle != null">
         commodity_title = #{commodityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPicture != null">
+        commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
       </if>
       <if test="ssid != null">
         ssid = #{ssid,jdbcType=INTEGER},
@@ -100,9 +103,6 @@
       <if test="enable != null">
         `enable` = #{enable,jdbcType=INTEGER},
       </if>
-      <if test="commodityPicture != null">
-        commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
-      </if>
     </set>
     where cid = #{cid,jdbcType=INTEGER}
   </update>
@@ -110,11 +110,11 @@
     <!--@mbg.generated-->
     update commodity
     set commodity_title = #{commodityTitle,jdbcType=VARCHAR},
+      commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
       ssid = #{ssid,jdbcType=INTEGER},
       `psid` = #{psid,jdbcType=INTEGER},
       is_new = #{isNew,jdbcType=INTEGER},
-      `enable` = #{enable,jdbcType=INTEGER},
-      commodity_picture = #{commodityPicture,jdbcType=VARCHAR}
+      `enable` = #{enable,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
 

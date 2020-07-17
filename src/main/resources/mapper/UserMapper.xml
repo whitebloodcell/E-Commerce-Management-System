@@ -5,14 +5,14 @@
     <!--@mbg.generated-->
     <!--@Table `user`-->
     <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="user_status" jdbcType="INTEGER" property="userStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="user_Account" jdbcType="VARCHAR" property="userAccount" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    user_id, user_account, user_password, user_status, create_time
+    user_id, user_password, user_status, create_time, user_Account
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -28,18 +28,15 @@
   </delete>
   <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.qf.ecms.domain.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into `user` (user_account, user_password, user_status, 
-      create_time)
-    values (#{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+    insert into `user` (user_password, user_status, create_time, 
+      user_Account)
+    values (#{userPassword,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{userAccount,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.qf.ecms.domain.entity.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userAccount != null">
-        user_account,
-      </if>
       <if test="userPassword != null">
         user_password,
       </if>
@@ -49,11 +46,11 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="userAccount != null">
+        user_Account,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userAccount != null">
-        #{userAccount,jdbcType=VARCHAR},
-      </if>
       <if test="userPassword != null">
         #{userPassword,jdbcType=VARCHAR},
       </if>
@@ -63,15 +60,15 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="userAccount != null">
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qf.ecms.domain.entity.User">
     <!--@mbg.generated-->
     update `user`
     <set>
-      <if test="userAccount != null">
-        user_account = #{userAccount,jdbcType=VARCHAR},
-      </if>
       <if test="userPassword != null">
         user_password = #{userPassword,jdbcType=VARCHAR},
       </if>
@@ -81,16 +78,19 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="userAccount != null">
+        user_Account = #{userAccount,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qf.ecms.domain.entity.User">
     <!--@mbg.generated-->
     update `user`
-    set user_account = #{userAccount,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR},
+    set user_password = #{userPassword,jdbcType=VARCHAR},
       user_status = #{userStatus,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_Account = #{userAccount,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 

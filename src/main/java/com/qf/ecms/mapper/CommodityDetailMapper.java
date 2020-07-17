@@ -1,7 +1,5 @@
 package com.qf.ecms.mapper;
 
-import com.qf.ecms.domain.entity.CommodityDetail;
-import org.apache.ibatis.annotations.Param;
 import com.qf.ecms.domain.dto.CommodityDetailDto;import com.qf.ecms.domain.entity.CommodityDetail;import org.apache.ibatis.annotations.Param;
 
 public interface CommodityDetailMapper {

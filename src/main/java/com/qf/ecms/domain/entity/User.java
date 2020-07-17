@@ -11,11 +11,6 @@ public class User {
     private Integer userId;
 
     /**
-     * 用户账号
-     */
-    private String userAccount;
-
-    /**
      * 用户密码
      */
     private String userPassword;
@@ -29,4 +24,9 @@ public class User {
      * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 用户名
+     */
+    private String userAccount;
 }
