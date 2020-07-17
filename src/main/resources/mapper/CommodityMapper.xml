@@ -119,7 +119,7 @@
   </update>
 
 
-<!--  -->
+  <!-- 自写lsd -->
   <insert id="insertAllCommodity" keyProperty="commodity.cid" useGeneratedKeys="true">
     insert into
     commodity
@@ -166,4 +166,50 @@
     </trim>
 
   </insert>
+  <update id="updateCommodity" parameterType="com.qf.ecms.domain.entity.Commodity">
+    update commodity
+    <trim prefix="set" suffixOverrides=",">
+      <if test="commodity.commodityTitle != null and commodity.commodityTitle != ''">
+        commodity_title = #{commodity.commodityTitle},
+      </if>
+      <if test="commodity.ssid != null">
+        ssid = #{commodity.ssid},
+      </if>
+      <if test="commodity.psid != null">
+        psid = #{commodity.psid},
+      </if>
+      <if test="commodity.isNew != null">
+        is_new = #{commodity.isNew},
+      </if>
+      <if test="commodity.enable != null">
+        enable = #{commodity.enable},
+      </if>
+      <if test="commodity.commodityPicture != null and commodity.commodityPicture != ''">
+        commodity_picture = #{commodity.commodityPicture}
+      </if>
+    </trim>
+    where
+    cid =#{commodity.cid}
+  </update>
+  <update id="deleteCommodity" parameterType="com.qf.ecms.domain.entity.Commodity">
+    update commodity set
+    enable = #{enable}
+    where
+    cid = #{cid}
+  </update>
+  <select id="selectDownCommodity" resultMap="BaseResultMap">
+    select cid, commodity_title, ssid, psid, is_new, enable, commodity_picture
+    from
+      commodity
+    where enable = #{enable}
+  </select>
+  <update id="deleteBatchCommodity">
+    update commodity
+    set enable = 2
+    where
+    cid in
+    <foreach collection="listCid" item="cid" open="(" close=")" separator=",">
+      #{cid}
+    </foreach>
+  </update>
 </mapper>

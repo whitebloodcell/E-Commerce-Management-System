@@ -32,10 +32,10 @@
   <insert id="insert" keyColumn="csid" keyProperty="csid" parameterType="com.qf.ecms.domain.entity.ColorSize" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into color_size (color_name, size_name, stock, 
-      original_price, present_price, cid, 
+      original_price, present_price, cid,
       version)
     values (#{colorName,jdbcType=VARCHAR}, #{sizeName,jdbcType=VARCHAR}, #{stock,jdbcType=INTEGER}, 
-      #{originalPrice,jdbcType=DECIMAL}, #{presentPrice,jdbcType=DECIMAL}, #{cid,jdbcType=INTEGER}, 
+      #{originalPrice,jdbcType=DECIMAL}, #{presentPrice,jdbcType=DECIMAL}, #{cid,jdbcType=INTEGER},
       #{version,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="csid" keyProperty="csid" parameterType="com.qf.ecms.domain.entity.ColorSize" useGeneratedKeys="true">
@@ -137,6 +137,8 @@
     </select>
 
 
+
+<!-- 自写lsd -->
   <insert id="insertAllCommodity" keyProperty="colorSize.csid" useGeneratedKeys="true">
     insert into
     color_size
@@ -182,6 +184,28 @@
     </if>
     </trim>
   </insert>
+    <update id="updateColorSize" parameterType="com.qf.ecms.domain.entity.ColorSize">
+      update color_size set
+      <trim suffixOverrides=",">
+        <if test="colorSize.colorName != null and colorSize.colorName != ''">
+          size_name = #{colorSize.sizeName},
+        </if>
+        <if test="colorSize.colorName != null and colorSize.colorName != ''">
+          size_name = #{colorSize.sizeName},
+        </if>
+        <if test="colorSize.stock != null">
+          stock = #{colorSize.stock},
+        </if>
+        <if test="colorSize.originalPrice != null">
+          original_price = #{colorSize.originalPrice},
+        </if>
+        <if test="colorSize.presentPrice != null">
+          present_price = #{colorSize.presentPrice}
+        </if>
+      </trim>
+      where
+      cid = #{colorSize.cid}
+    </update>
   <select id="SelectALlColorSizeByCid" resultMap="BaseResultMap">
     SELECT csid, color_name, size_name, stock, original_price, present_price
     FROM color_size cs left join commodity c on cs.cid = c.cid

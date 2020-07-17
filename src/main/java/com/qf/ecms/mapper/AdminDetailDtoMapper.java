@@ -5,4 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface AdminDetailDtoMapper {
     int insert(@Param("adminDetailDto") AdminDetailDto adminDetailDto);
+
+    int update(@Param("adminDetailDto") AdminDetailDto adminDetailDto);
 }

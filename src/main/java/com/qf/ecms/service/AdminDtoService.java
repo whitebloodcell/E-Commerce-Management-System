@@ -19,4 +19,16 @@ public interface AdminDtoService {
 
     //添加管理员
     int insert(RoleDto roleDto);
+
+    //修改管理员信息
+    int update(AdminDto adminDto);
+
+    //删除管理员
+    int delete(int adminId);
+
+    //批量删除管理员
+    int deleteBatch(List<Integer> adminIds);
+
+    //激活管理员
+    int active(int adminId);
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -50,6 +51,35 @@ public class AdminController {
     @PostMapping("/add")
     public ResponseEntity<Integer> insert(@RequestBody RoleDto roleDto) throws ServiceException{
         int count = adminDtoService.insert(roleDto);
+        return ResponseEntity.success(count);
+    }
+
+    //修改管理员信息
+    @PutMapping("/update")
+    public ResponseEntity<Integer> update(@RequestBody AdminDto adminDto) throws ServiceException{
+        int count = adminDtoService.update(adminDto);
+        return ResponseEntity.success(count);
+    }
+
+    //删除管理员
+    @DeleteMapping("/delete")
+    public ResponseEntity<Integer> delete(int adminId) throws ServiceException{
+        int count = adminDtoService.delete(adminId);
+        return ResponseEntity.success(count);
+    }
+
+    //批量删除管理员
+    @DeleteMapping("/deleteBatch")
+    public ResponseEntity<Integer> deleteBatch(@RequestBody Map<String,List<Integer>> map) throws ServiceException{
+        List<Integer> ids = map.get("ids");
+        int count = adminDtoService.deleteBatch(ids);
+        return ResponseEntity.success(count);
+    }
+
+    //激活管理员
+    @PutMapping("/active")
+    public ResponseEntity<Integer> active(int adminId) throws ServiceException{
+        int count = adminDtoService.active(adminId);
         return ResponseEntity.success(count);
     }
 
