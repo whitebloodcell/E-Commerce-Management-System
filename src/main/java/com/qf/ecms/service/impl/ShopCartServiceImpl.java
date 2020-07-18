@@ -72,8 +72,9 @@ public class ShopCartServiceImpl implements ShopCartService {
         //修改成功数
         int row = 0;
         if (count<=stock){
-            row = shopCartMapper.updateShopCartCount(shopCart.getCartId(), count);
+            row = shopCartMapper.updateShopCartCount(shopCart.getCartId(), shopCart.getCount());
         }else {
+            shopCartMapper.updateShopCartCount(shopCart.getCartId(), count);
             throw new ServiceException("最多只能买"+stock+"件",20000);
         }
         return row;
