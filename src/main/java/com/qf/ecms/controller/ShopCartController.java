@@ -36,7 +36,7 @@ public class ShopCartController {
                 responseEntity = responseEntity.error();
             }
         } catch (ServiceException e) {
-            return ResponseEntity.error(e.getStatus(), e.getMsg());
+            return e.getErrorResponseEntity();
         } catch (Exception e) {
             responseEntity = ResponseEntity.error();
         }
@@ -60,7 +60,8 @@ public class ShopCartController {
                 responseEntity = responseEntity.error();
             }
         } catch (ServiceException e) {
-            return ResponseEntity.error(e.getStatus(), e.getMsg());
+            //返回异常信息
+            return e.getErrorResponseEntity();
         } catch (Exception e) {
             responseEntity = ResponseEntity.error();
         }

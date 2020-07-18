@@ -38,7 +38,7 @@ public class UserAddressServiceImpl implements UserAddressService {
         //查询用户保存的记录数
         int count = userAddressMapper.selectAddressCount(userAddress.getUserId());
         //保存记录等于10代表记录数已满
-        if(count==10){
+        if(count>=10){
             throw new ServiceException("收货地址最多只能添加10条",20000);
         }else if(userAddress.getIsDefault()==1){
             //把所有当前用户的地址设为非默认
